@@ -1,0 +1,11 @@
+{
+  "site": "viewer",
+  "foreground": [
+    "venue",
+    "spec",
+    "delivery",
+    "playback"
+  ],
+  "showSpecs": true,
+  "showArchive": false
+}

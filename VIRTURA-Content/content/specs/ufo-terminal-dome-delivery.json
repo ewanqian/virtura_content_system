@@ -1,0 +1,14 @@
+{
+  "id": "ufo-terminal-dome-delivery",
+  "type": "spec",
+  "title": "UFO Terminal Dome Delivery Spec",
+  "resolution": "15456x2184",
+  "frameRate": "60fps",
+  "codec": "Apple ProRes 422 HQ",
+  "container": "MOV",
+  "colorSpace": "Rec.709",
+  "notes": [
+    "Confirm playback sync before final delivery",
+    "Check dome edge conditions and spatial crop"
+  ]
+}

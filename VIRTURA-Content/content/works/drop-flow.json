@@ -1,0 +1,23 @@
+{
+  "id": "drop-flow",
+  "type": "work",
+  "title": "Drop Flow",
+  "subtitle": "一种持续性的结构涌现",
+  "years": "2024–2025",
+  "summary": "A long-running series centered on spatial generation, flow structures, immersive image-making, and perceptual movement.",
+  "practiceLine": "spatial-generation",
+  "coverImage": "works/drop-flow/cover-01.jpg",
+  "relatedNodes": [
+    "ufo-terminal",
+    "hangzhou-opening"
+  ],
+  "relatedWritings": [],
+  "relatedVenues": [
+    "ufo-terminal-dome"
+  ],
+  "tags": [
+    "immersive",
+    "space",
+    "flow"
+  ]
+}

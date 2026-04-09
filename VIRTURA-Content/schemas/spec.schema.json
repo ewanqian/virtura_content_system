@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Spec",
+  "required": [
+    "id",
+    "type",
+    "title"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "const": "spec"
+    },
+    "title": {
+      "type": "string"
+    },
+    "resolution": {
+      "type": "string"
+    },
+    "frameRate": {
+      "type": "string"
+    },
+    "codec": {
+      "type": "string"
+    },
+    "container": {
+      "type": "string"
+    },
+    "colorSpace": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Work",
+  "required": [
+    "id",
+    "type",
+    "title"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "const": "work"
+    },
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "years": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "practiceLine": {
+      "type": "string"
+    },
+    "coverImage": {
+      "type": "string"
+    },
+    "relatedNodes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "relatedWritings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "relatedVenues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "ewan-qian",
+  "type": "person",
+  "name": "Ewan Qian",
+  "roles": [
+    "media artist",
+    "spatial image creator",
+    "live visual producer"
+  ],
+  "summary": "Works across live visuals, spatial image-making, immersive environments, and digital media systems.",
+  "links": {
+    "instagram": "https://www.instagram.com/ewanqian/",
+    "bilibili": "https://space.bilibili.com/2380485",
+    "xiaohongshu": "https://www.xiaohongshu.com/user/profile/60d73226000000000101f30e",
+    "github": "https://github.com/ewanqian"
+  },
+  "featuredImage": "people/ewan-qian/portrait-01.jpg"
+}

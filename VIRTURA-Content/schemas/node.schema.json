@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Node",
+  "required": [
+    "id",
+    "type",
+    "title",
+    "year"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "const": "node"
+    },
+    "title": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "relatedWork": {
+      "type": "string"
+    },
+    "relatedPeople": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "relatedVenue": {
+      "type": "string"
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "externalLinks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

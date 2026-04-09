@@ -1,0 +1,12 @@
+{
+  "id": "virtura-collective",
+  "type": "collective",
+  "name": "VIRTURA Collective",
+  "summary": "A distributed art collective and creative network focusing on works, systems, and spatial experience.",
+  "members": [
+    "ewan-qian"
+  ],
+  "links": {
+    "site": "https://github.com/ewanqian/VIRTURA-Collective"
+  }
+}

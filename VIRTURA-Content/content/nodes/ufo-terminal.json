@@ -1,0 +1,15 @@
+{
+  "id": "ufo-terminal",
+  "type": "node",
+  "title": "UFO Terminal / Creation Camp",
+  "year": "2025",
+  "category": "Live Experiment / Process",
+  "summary": "A major node for live experimentation, spatial testing, and procedural image structure.",
+  "relatedWork": "drop-flow",
+  "relatedPeople": [
+    "ewan-qian"
+  ],
+  "relatedVenue": "ufo-terminal-dome",
+  "assets": [],
+  "externalLinks": []
+}

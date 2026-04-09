@@ -1,0 +1,11 @@
+{
+  "site": "spaceport",
+  "foreground": [
+    "stations",
+    "archive",
+    "public-nodes",
+    "knowledge-routing"
+  ],
+  "showSpecs": false,
+  "showArchive": true
+}

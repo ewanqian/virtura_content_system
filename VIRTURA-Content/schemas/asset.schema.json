@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Asset",
+  "required": [
+    "id",
+    "type",
+    "filename"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "const": "asset"
+    },
+    "filename": {
+      "type": "string"
+    },
+    "mediaType": {
+      "type": "string"
+    },
+    "caption": {
+      "type": "string"
+    },
+    "relatedWork": {
+      "type": "string"
+    },
+    "relatedNode": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string"
+    },
+    "featured": {
+      "type": "boolean"
+    }
+  }
+}

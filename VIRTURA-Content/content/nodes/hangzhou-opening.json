@@ -1,0 +1,15 @@
+{
+  "id": "hangzhou-opening",
+  "type": "node",
+  "title": "Hangzhou Biennale Opening Node",
+  "year": "2025",
+  "category": "Public Presentation / Immersive",
+  "summary": "A public-facing node that further validated the spatial and immersive reading of Drop Flow.",
+  "relatedWork": "drop-flow",
+  "relatedPeople": [
+    "ewan-qian"
+  ],
+  "relatedVenue": "",
+  "assets": [],
+  "externalLinks": []
+}

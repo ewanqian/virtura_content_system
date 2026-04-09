@@ -1,0 +1,10 @@
+{
+  "site": "newsroom",
+  "foreground": [
+    "writings",
+    "reviews",
+    "commentary"
+  ],
+  "showSpecs": false,
+  "showArchive": true
+}

@@ -1,0 +1,32 @@
+{
+  "id": "drop-flow",
+  "type": "work",
+  "title": "Drop Flow",
+  "primaryOwner": "ewan-qian",
+  "primaryContext": "shared",
+  "visibility": [
+    "portfolio",
+    "collective",
+    "spaceport",
+    "newsroom"
+  ],
+  "displayPriority": {
+    "portfolio": "featured",
+    "collective": "featured"
+  },
+  "contributionMode": "lead",
+  "sourceRefs": [
+    "portfolio/visual-arts/drop-flow-series/README.md"
+  ],
+  "relatedNodes": [
+    "hangzhou-opening-drop-flow",
+    "ufo-terminal-drop-flow"
+  ],
+  "relatedPeople": [
+    "ewan-qian"
+  ],
+  "notePlan": {
+    "artistic": "notes/artistic/drop-flow.md",
+    "production": "notes/production/drop-flow.md"
+  }
+}

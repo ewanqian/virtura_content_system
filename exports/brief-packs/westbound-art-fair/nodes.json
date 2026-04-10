@@ -1,0 +1,29 @@
+[
+  {
+    "id": 5,
+    "filename": "event-2023-westbound-art-fair-ewan-artwork.jpg",
+    "path": "data/images/event-2023-westbound-art-fair-ewan-artwork.jpg",
+    "title_guess": "2023 Westbound Art Fair Ewan Artwork",
+    "year_guess": "2023",
+    "date_guess": null,
+    "related_work_guess": "Westbound Art Fair",
+    "related_node_guess": "Westbound Art",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "event",
+    "owner_guess": "personal",
+    "artist": "Ewan",
+    "contributors": [],
+    "contributions": [],
+    "is_duplicate": false,
+    "fingerprint": "1440x1440_212565",
+    "image_info": {
+      "width": 1440,
+      "height": 1440,
+      "aspect_ratio": 1.0,
+      "orientation": "square"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.683482"
+  }
+]

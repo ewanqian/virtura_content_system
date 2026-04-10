@@ -1,0 +1,258 @@
+[
+  {
+    "id": 18,
+    "filename": "event-loading-access-2-exhibition-poster-timer-preview-01.jpg",
+    "path": "data/images/event-loading-access-2-exhibition-poster-timer-preview-01.jpg",
+    "title_guess": "Loading Access 2 Exhibition Poster Timer Preview",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "TIMER",
+    "related_node_guess": "Timer",
+    "type_guess": "poster",
+    "featured_candidate": true,
+    "category": "event",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "3465x1899_416823",
+    "image_info": {
+      "width": 3465,
+      "height": 1899,
+      "aspect_ratio": 1.82,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.687593"
+  },
+  {
+    "id": 19,
+    "filename": "event-loading-access-2-exhibition-poster-timer-preview-02.jpg",
+    "path": "data/images/event-loading-access-2-exhibition-poster-timer-preview-02.jpg",
+    "title_guess": "Loading Access 2 Exhibition Poster Timer Preview",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "TIMER",
+    "related_node_guess": "Timer",
+    "type_guess": "poster",
+    "featured_candidate": true,
+    "category": "event",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "3416x1859_422024",
+    "image_info": {
+      "width": 3416,
+      "height": 1859,
+      "aspect_ratio": 1.84,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.687821"
+  },
+  {
+    "id": 20,
+    "filename": "event-loading-access-2-exhibition-timer-digital-stage-01.jpg",
+    "path": "data/images/event-loading-access-2-exhibition-timer-digital-stage-01.jpg",
+    "title_guess": "Loading Access 2 Exhibition Timer Digital Stage",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "TIMER",
+    "related_node_guess": "Timer",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "event",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1412x1155_140932",
+    "image_info": {
+      "width": 1412,
+      "height": 1155,
+      "aspect_ratio": 1.22,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.688057"
+  },
+  {
+    "id": 21,
+    "filename": "event-loading-access-2-exhibition-timer-digital-stage-02.jpg",
+    "path": "data/images/event-loading-access-2-exhibition-timer-digital-stage-02.jpg",
+    "title_guess": "Loading Access 2 Exhibition Timer Digital Stage",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "TIMER",
+    "related_node_guess": "Timer",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "event",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1425x1187_157742",
+    "image_info": {
+      "width": 1425,
+      "height": 1187,
+      "aspect_ratio": 1.2,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.688281"
+  },
+  {
+    "id": 22,
+    "filename": "event-loading-access-2-exhibition-timer-preview-02.jpg",
+    "path": "data/images/event-loading-access-2-exhibition-timer-preview-02.jpg",
+    "title_guess": "Loading Access 2 Exhibition Timer Preview",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "TIMER",
+    "related_node_guess": "Timer",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "event",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": true,
+    "fingerprint": "3416x1859_422024",
+    "image_info": {
+      "width": 3416,
+      "height": 1859,
+      "aspect_ratio": 1.84,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.688518"
+  },
+  {
+    "id": 44,
+    "filename": "ewan-project-timer-2025.jpg",
+    "path": "data/images/ewan-project-timer-2025.jpg",
+    "title_guess": "Project Timer",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "TIMER",
+    "related_node_guess": "Timer",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "ewan",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1080x1350_220956",
+    "image_info": {
+      "width": 1080,
+      "height": 1350,
+      "aspect_ratio": 0.8,
+      "orientation": "square"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.694684"
+  },
+  {
+    "id": 67,
+    "filename": "project-timer-main.jpg",
+    "path": "data/images/project-timer-main.jpg",
+    "title_guess": "Timer Main",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "TIMER",
+    "related_node_guess": "Timer",
+    "type_guess": "hero",
+    "featured_candidate": true,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "3840x2160_4002532",
+    "image_info": {
+      "width": 3840,
+      "height": 2160,
+      "aspect_ratio": 1.78,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.702065"
+  },
+  {
+    "id": 68,
+    "filename": "project-timer-on-apple-vision-pro.jpg",
+    "path": "data/images/project-timer-on-apple-vision-pro.jpg",
+    "title_guess": "Timer On Apple Vision Pro",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "TIMER",
+    "related_node_guess": "Timer",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1440x1440_567960",
+    "image_info": {
+      "width": 1440,
+      "height": 1440,
+      "aspect_ratio": 1.0,
+      "orientation": "square"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.702506"
+  }
+]

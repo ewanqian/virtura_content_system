@@ -1,0 +1,1471 @@
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Node Library | Image Asset Library&lt;/title&gt;
+  &lt;style&gt;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-primary: #050505;
+      --bg-secondary: #0a0a0a;
+      --bg-tertiary: #141414;
+      --bg-card: #1a1a1a;
+      --bg-card-hover: #252525;
+      
+      --border-color: #262626;
+      --border-hover: #333333;
+      
+      --text-primary: #fafafa;
+      --text-secondary: #a3a3a3;
+      --text-tertiary: #666666;
+      --text-muted: #525252;
+      
+      --accent-blue: #3b82f6;
+      --accent-blue-hover: #60a5fa;
+      --accent-green: #10b981;
+      --accent-purple: #8b5cf6;
+      --accent-orange: #f59e0b;
+      --accent-red: #ef4444;
+      
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.5);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.6);
+      --shadow-xl: 0 20px 25px rgba(0,0,0,0.7);
+      
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 280px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      padding: 24px 20px;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-header {
+      margin-bottom: 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .logo-text {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-primary);
+    }
+
+    .logo-subtitle {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin-left: 42px;
+      letter-spacing: 0.2px;
+    }
+
+    .nav-section {
+      margin-bottom: 28px;
+    }
+
+    .nav-section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+      padding-left: 4px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) scaleY(0);
+      width: 3px;
+      height: 20px;
+      background: var(--accent-blue);
+      border-radius: 0 2px 2px 0;
+      transition: transform var(--transition-normal);
+    }
+
+    .nav-item:hover {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active::before {
+      transform: translateY(-50%) scaleY(1);
+    }
+
+    .nav-item .icon {
+      font-size: 18px;
+      width: 24px;
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    .nav-item .label {
+      flex: 1;
+      font-weight: 500;
+    }
+
+    .nav-item .count {
+      background: var(--bg-tertiary);
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .nav-item.active .count {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--accent-blue-hover);
+    }
+
+    .filter-section {
+      border-top: 1px solid var(--border-color);
+      padding-top: 24px;
+      margin-top: auto;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 10px 14px 10px 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      transition: all var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .search-box::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    .search-box:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      background: var(--bg-card-hover);
+    }
+
+    .search-wrapper {
+      position: relative;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .filter-group {
+      margin-bottom: 20px;
+    }
+
+    .filter-group-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+      padding-left: 4px;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .filter-btn {
+      padding: 6px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 12px;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+      font-family: inherit;
+      font-weight: 500;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+      background: var(--bg-card-hover);
+    }
+
+    .filter-btn.active {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: white;
+    }
+
+    .filter-btn.owner-personal.active {
+      background: var(--accent-green);
+      border-color: var(--accent-green);
+    }
+
+    .filter-btn.owner-team.active {
+      background: var(--accent-purple);
+      border-color: var(--accent-purple);
+    }
+
+    .stats-card {
+      margin-top: 20px;
+      padding: 16px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+    }
+
+    .stats-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.2px;
+    }
+
+    .stat-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .stat-value.warning {
+      color: var(--accent-orange);
+    }
+
+    .main {
+      flex: 1;
+      margin-left: 280px;
+      padding: 32px 40px;
+    }
+
+    .view-header {
+      margin-bottom: 32px;
+    }
+
+    .view-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      letter-spacing: -0.8px;
+    }
+
+    .view-description {
+      color: var(--text-secondary);
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+
+    .grid-view {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .masonry-view {
+      column-count: 4;
+      column-gap: 20px;
+    }
+
+    @media (max-width: 1400px) {
+      .masonry-view { column-count: 3; }
+    }
+
+    @media (max-width: 1100px) {
+      .masonry-view { column-count: 2; }
+    }
+
+    @media (max-width: 700px) {
+      .masonry-view { column-count: 1; }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      border: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .masonry-view .card {
+      break-inside: avoid;
+      margin-bottom: 20px;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .card.featured::before {
+      content: '★ Featured';
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: linear-gradient(135deg, var(--accent-orange) 0%, #fbbf24 100%);
+      color: #000;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 700;
+      z-index: 10;
+      letter-spacing: 0.3px;
+    }
+
+    .card.duplicate {
+      border-color: var(--accent-red);
+    }
+
+    .card.duplicate::after {
+      content: '⚠️ Duplicate';
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--accent-red);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 700;
+      z-index: 10;
+      letter-spacing: 0.3px;
+    }
+
+    .card-img-wrap {
+      position: relative;
+      background: var(--bg-tertiary);
+      overflow: hidden;
+    }
+
+    .card-img-wrap.landscape {
+      aspect-ratio: 16/10;
+    }
+
+    .card-img-wrap.portrait {
+      aspect-ratio: 3/4;
+    }
+
+    .card-img-wrap.square {
+      aspect-ratio: 1/1;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform var(--transition-slow);
+    }
+
+    .card:hover .card-img {
+      transform: scale(1.06);
+    }
+
+    .card-info {
+      padding: 16px 18px 18px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      line-height: 1.4;
+      letter-spacing: -0.2px;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      color: var(--text-tertiary);
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+
+    .badge.type-hero { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+    .badge.type-poster { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+    .badge.type-portrait { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; }
+    .badge.type-documentation { background: rgba(245, 158, 11, 0.15); color: #fde047; }
+    .badge.type-archive { background: rgba(249, 115, 22, 0.15); color: #fdba74; }
+    .badge.type-public { background: rgba(20, 184, 166, 0.15); color: #5eead4; }
+    .badge.owner-personal { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .badge.owner-team { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+    .badge.owner-unknown { background: var(--bg-tertiary); color: #9ca3af; }
+
+    .card-work {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.1px;
+    }
+
+    .honor-wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px;
+    }
+
+    .honor-card {
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-normal);
+      cursor: pointer;
+    }
+
+    .honor-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--border-hover);
+    }
+
+    .honor-img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .honor-info {
+      padding: 22px 24px 24px;
+    }
+
+    .honor-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      letter-spacing: -0.4px;
+    }
+
+    .honor-work {
+      color: var(--accent-blue-hover);
+      font-size: 13px;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .honor-notes {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .timeline-view {
+      position: relative;
+      padding-left: 48px;
+    }
+
+    .timeline-view::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-blue), var(--border-color));
+      border-radius: 1px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -40px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      background: var(--accent-blue);
+      border-radius: 50%;
+      border: 4px solid var(--bg-primary);
+      box-shadow: 0 0 0 2px var(--accent-blue);
+    }
+
+    .timeline-year {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent-blue-hover);
+      margin-bottom: 20px;
+      letter-spacing: -0.8px;
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .timeline-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+    }
+
+    .timeline-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .timeline-card img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+
+    .timeline-card-info {
+      padding: 12px 14px 14px;
+    }
+
+    .timeline-card-title {
+      font-size: 13px;
+      color: var(--text-primary);
+      font-weight: 500;
+      letter-spacing: -0.2px;
+    }
+
+    .practice-map {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .project-section {
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      border: 1px solid var(--border-color);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .project-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.6px;
+    }
+
+    .project-count {
+      background: var(--bg-tertiary);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-normal);
+    }
+
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: scale(1.02);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .project-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .project-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 40%, transparent 70%);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .project-card:hover .project-card-overlay {
+      opacity: 1;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 100px 20px;
+      color: var(--text-tertiary);
+    }
+
+    .empty-state-icon {
+      font-size: 56px;
+      margin-bottom: 20px;
+      opacity: 0.6;
+    }
+
+    .empty-state-text {
+      font-size: 16px;
+      color: var(--text-secondary);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 24px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-xl);
+      max-width: 1000px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--text-tertiary);
+      padding: 0;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      transition: color var(--transition-fast);
+      border-radius: var(--radius-sm);
+    }
+
+    .close-btn:hover {
+      color: var(--text-primary);
+      background: var(--bg-card);
+    }
+
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-image-container {
+      background: #000;
+      text-align: center;
+      padding: 32px;
+    }
+
+    .modal-image {
+      max-width: 100%;
+      max-height: 65vh;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-details {
+      padding: 28px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .detail-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .detail-value {
+      font-size: 14px;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    .detail-value.guess {
+      color: var(--accent-orange);
+    }
+
+    .detail-value.personal {
+      color: var(--accent-green);
+    }
+
+    .detail-value.team {
+      color: var(--accent-purple);
+    }
+
+    .detail-value.warning {
+      color: var(--accent-red);
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform var(--transition-normal);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .main {
+        margin-left: 0;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-tertiary);
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="sidebar"&gt;
+      &lt;div class="sidebar-header"&gt;
+        &lt;div class="logo"&gt;
+          &lt;div class="logo-icon"&gt;◈&lt;/div&gt;
+          &lt;div class="logo-text"&gt;Node Library&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="logo-subtitle"&gt;Image Asset Library&lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class="nav-section"&gt;
+        &lt;div class="nav-section-title"&gt;Views&lt;/div&gt;
+        &lt;div class="nav-item active" data-view="image-wall"&gt;
+          &lt;span class="icon"&gt;🖼️&lt;/span&gt;
+          &lt;span class="label"&gt;Image Wall&lt;/span&gt;
+          &lt;span class="count" id="count-all"&gt;0&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="nav-item" data-view="practice-map"&gt;
+          &lt;span class="icon"&gt;🗺️&lt;/span&gt;
+          &lt;span class="label"&gt;Practice Map&lt;/span&gt;
+          &lt;span class="count" id="count-projects"&gt;0&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="nav-item" data-view="archive"&gt;
+          &lt;span class="icon"&gt;📅&lt;/span&gt;
+          &lt;span class="label"&gt;Archive&lt;/span&gt;
+          &lt;span class="count" id="count-years"&gt;0&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="nav-item" data-view="honor-wall"&gt;
+          &lt;span class="icon"&gt;🏆&lt;/span&gt;
+          &lt;span class="label"&gt;荣誉墙&lt;/span&gt;
+          &lt;span class="count" id="count-featured"&gt;0&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="nav-item" data-view="public-nodes"&gt;
+          &lt;span class="icon"&gt;🌐&lt;/span&gt;
+          &lt;span class="label"&gt;Public Nodes&lt;/span&gt;
+          &lt;span class="count" id="count-public"&gt;0&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class="filter-section"&gt;
+        &lt;div class="search-wrapper"&gt;
+          &lt;span class="search-icon"&gt;🔍&lt;/span&gt;
+          &lt;input type="text" class="search-box" id="searchInput" placeholder="Search nodes..."&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="filter-group"&gt;
+          &lt;div class="filter-group-title"&gt;Owner&lt;/div&gt;
+          &lt;div class="filter-buttons" id="ownerFilters"&gt;
+            &lt;button class="filter-btn active" data-owner="all"&gt;All&lt;/button&gt;
+            &lt;button class="filter-btn owner-personal" data-owner="personal"&gt;👤 Personal&lt;/button&gt;
+            &lt;button class="filter-btn owner-team" data-owner="team"&gt;👥 Team&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="filter-group"&gt;
+          &lt;div class="filter-group-title"&gt;Type&lt;/div&gt;
+          &lt;div class="filter-buttons" id="typeFilters"&gt;
+            &lt;button class="filter-btn active" data-type="all"&gt;All&lt;/button&gt;
+            &lt;button class="filter-btn" data-type="hero"&gt;Hero&lt;/button&gt;
+            &lt;button class="filter-btn" data-type="poster"&gt;Poster&lt;/button&gt;
+            &lt;button class="filter-btn" data-type="portrait"&gt;Portrait&lt;/button&gt;
+            &lt;button class="filter-btn" data-type="documentation"&gt;Docs&lt;/button&gt;
+            &lt;button class="filter-btn" data-type="archive"&gt;Archive&lt;/button&gt;
+            &lt;button class="filter-btn" data-type="public node"&gt;Public&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="stats-card"&gt;
+          &lt;div class="stats-title"&gt;Library Stats&lt;/div&gt;
+          &lt;div class="stats-grid"&gt;
+            &lt;div class="stat-item"&gt;
+              &lt;span class="stat-label"&gt;Total Nodes&lt;/span&gt;
+              &lt;span class="stat-value" id="stat-total"&gt;0&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="stat-item"&gt;
+              &lt;span class="stat-label"&gt;Featured&lt;/span&gt;
+              &lt;span class="stat-value" id="stat-featured"&gt;0&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="stat-item"&gt;
+              &lt;span class="stat-label"&gt;Works&lt;/span&gt;
+              &lt;span class="stat-value" id="stat-works"&gt;0&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="stat-item"&gt;
+              &lt;span class="stat-label"&gt;Duplicates&lt;/span&gt;
+              &lt;span class="stat-value warning" id="stat-duplicates"&gt;0&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="main"&gt;
+      &lt;div id="viewContainer"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="modal-overlay" id="modalOverlay"&gt;
+    &lt;div class="modal"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;div class="modal-title" id="modalTitle"&gt;&lt;/div&gt;
+        &lt;button class="close-btn" id="closeModal"&gt;&amp;times;&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-content"&gt;
+        &lt;div class="modal-image-container"&gt;
+          &lt;img id="modalImage" class="modal-image"&gt;
+        &lt;/div&gt;
+        &lt;div class="modal-details" id="modalDetails"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    let nodes = [];
+    let filteredNodes = [];
+    let currentView = 'image-wall';
+    let currentType = 'all';
+    let currentOwner = 'all';
+    let currentSearch = '';
+
+    const viewDescriptions = {
+      'image-wall': 'Curated masonry view of all content nodes',
+      'practice-map': 'Projects organized by practice areas',
+      'archive': 'Timeline-based archival view',
+      'honor-wall': 'Featured candidate showcase',
+      'public-nodes': 'Public-ready assets'
+    };
+
+    async function loadNodes() {
+      try {
+        const response = await fetch('data/nodes.json');
+        nodes = await response.json();
+      } catch (e) {
+        nodes = [];
+      }
+      filteredNodes = [...nodes];
+      updateStats();
+      render();
+    }
+
+    function updateStats() {
+      document.getElementById('count-all').textContent = nodes.length;
+      document.getElementById('count-featured').textContent = nodes.filter(n =&gt; n.featured_candidate).length;
+      document.getElementById('count-public').textContent = nodes.filter(n =&gt; n.type_guess === 'public node').length;
+      
+      const works = new Set(nodes.filter(n =&gt; n.related_work_guess).map(n =&gt; n.related_work_guess));
+      document.getElementById('count-projects').textContent = works.size;
+      
+      const years = new Set(nodes.filter(n =&gt; n.year_guess).map(n =&gt; n.year_guess));
+      document.getElementById('count-years').textContent = years.size;
+
+      document.getElementById('stat-total').textContent = nodes.length;
+      document.getElementById('stat-featured').textContent = nodes.filter(n =&gt; n.featured_candidate).length;
+      document.getElementById('stat-works').textContent = works.size;
+      document.getElementById('stat-duplicates').textContent = nodes.filter(n =&gt; n.is_duplicate).length;
+    }
+
+    function filter() {
+      filteredNodes = nodes.filter(node =&gt; {
+        if (currentType !== 'all' &amp;&amp; node.type_guess !== currentType) {
+          return false;
+        }
+        if (currentOwner !== 'all' &amp;&amp; node.owner_guess !== currentOwner) {
+          return false;
+        }
+        if (currentSearch) {
+          const searchLower = currentSearch.toLowerCase();
+          const text = [
+            node.title_guess,
+            node.related_work_guess,
+            node.related_node_guess,
+            node.filename,
+            node.notes,
+            node.artist
+          ].join(' ').toLowerCase();
+          if (!text.includes(searchLower)) {
+            return false;
+          }
+        }
+        return true;
+      });
+      render();
+    }
+
+    function render() {
+      const container = document.getElementById('viewContainer');
+      
+      const viewTitles = {
+        'image-wall': 'Image Wall',
+        'practice-map': 'Practice Map',
+        'archive': 'Archive',
+        'honor-wall': '荣誉墙',
+        'public-nodes': 'Public Nodes'
+      };
+
+      let html = `
+        &lt;div class="view-header"&gt;
+          &lt;h1 class="view-title"&gt;${viewTitles[currentView]}&lt;/h1&gt;
+          &lt;p class="view-description"&gt;${viewDescriptions[currentView]}&lt;/p&gt;
+        &lt;/div&gt;
+      `;
+
+      if (filteredNodes.length === 0) {
+        html += `
+          &lt;div class="empty-state"&gt;
+            &lt;div class="empty-state-icon"&gt;🔍&lt;/div&gt;
+            &lt;div class="empty-state-text"&gt;No nodes found matching your criteria&lt;/div&gt;
+          &lt;/div&gt;
+        `;
+        container.innerHTML = html;
+        return;
+      }
+
+      switch (currentView) {
+        case 'image-wall':
+          html += renderImageWall();
+          break;
+        case 'practice-map':
+          html += renderPracticeMap();
+          break;
+        case 'archive':
+          html += renderArchive();
+          break;
+        case 'honor-wall':
+          html += renderHonorWall();
+          break;
+        case 'public-nodes':
+          html += renderPublicNodes();
+          break;
+      }
+
+      container.innerHTML = html;
+      attachCardEvents();
+    }
+
+    function renderImageWall() {
+      let html = '&lt;div class="masonry-view"&gt;';
+      filteredNodes.forEach(node =&gt; {
+        html += renderCard(node);
+      });
+      html += '&lt;/div&gt;';
+      return html;
+    }
+
+    function renderPracticeMap() {
+      const workGroups = {};
+      filteredNodes.forEach(node =&gt; {
+        const work = node.related_work_guess || 'Uncategorized';
+        if (!workGroups[work]) workGroups[work] = [];
+        workGroups[work].push(node);
+      });
+
+      let html = '&lt;div class="practice-map"&gt;';
+      
+      const sortedWorks = Object.entries(workGroups).sort((a, b) =&gt; b[1].length - a[1].length);
+      
+      sortedWorks.forEach(([work, workNodes]) =&gt; {
+        html += `
+          &lt;div class="project-section"&gt;
+            &lt;div class="project-header"&gt;
+              &lt;div class="project-name"&gt;${work}&lt;/div&gt;
+              &lt;div class="project-count"&gt;${workNodes.length} nodes&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="project-grid"&gt;
+        `;
+        workNodes.forEach(node =&gt; {
+          html += `
+            &lt;div class="project-card" data-id="${node.id}"&gt;
+              &lt;img src="${node.path}" alt="${node.title_guess}"&gt;
+              &lt;div class="project-card-overlay"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          `;
+        });
+        html += '&lt;/div&gt;&lt;/div&gt;';
+      });
+      
+      html += '&lt;/div&gt;';
+      return html;
+    }
+
+    function renderArchive() {
+      const yearGroups = {};
+      filteredNodes.forEach(node =&gt; {
+        const year = node.year_guess || 'Unknown';
+        if (!yearGroups[year]) yearGroups[year] = [];
+        yearGroups[year].push(node);
+      });
+
+      let html = '&lt;div class="timeline-view"&gt;';
+      
+      const sortedYears = Object.keys(yearGroups).sort((a, b) =&gt; b.localeCompare(a));
+      
+      sortedYears.forEach(year =&gt; {
+        html += `
+          &lt;div class="timeline-item"&gt;
+            &lt;div class="timeline-year"&gt;${year}&lt;/div&gt;
+            &lt;div class="timeline-grid"&gt;
+        `;
+        yearGroups[year].forEach(node =&gt; {
+          html += `
+            &lt;div class="timeline-card" data-id="${node.id}"&gt;
+              &lt;img src="${node.path}" alt="${node.title_guess}"&gt;
+              &lt;div class="timeline-card-info"&gt;
+                &lt;div class="timeline-card-title"&gt;${node.title_guess}&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          `;
+        });
+        html += '&lt;/div&gt;&lt;/div&gt;';
+      });
+      
+      html += '&lt;/div&gt;';
+      return html;
+    }
+
+    function renderHonorWall() {
+      const featured = filteredNodes.filter(n =&gt; n.featured_candidate);
+      
+      if (featured.length === 0) {
+        return `
+          &lt;div class="empty-state"&gt;
+            &lt;div class="empty-state-icon"&gt;⭐&lt;/div&gt;
+            &lt;div class="empty-state-text"&gt;No featured candidates yet&lt;/div&gt;
+          &lt;/div&gt;
+        `;
+      }
+
+      const grouped = {};
+      featured.forEach(node =&gt; {
+        const work = node.related_work_guess || 'Uncategorized';
+        if (!grouped[work]) grouped[work] = [];
+        grouped[work].push(node);
+      });
+
+      let html = '&lt;div class="honor-wall"&gt;';
+      
+      Object.entries(grouped).forEach(([work, nodes]) =&gt; {
+        const primaryNode = nodes[0];
+        const duplicateCount = nodes.length;
+        
+        html += `
+          &lt;div class="honor-card" data-id="${primaryNode.id}"&gt;
+            &lt;img class="honor-img" src="${primaryNode.path}" alt="${primaryNode.title_guess}"&gt;
+            &lt;div class="honor-info"&gt;
+              &lt;div class="honor-title"&gt;${primaryNode.title_guess}&lt;/div&gt;
+              &lt;div class="honor-work"&gt;${work}&lt;/div&gt;
+              ${duplicateCount &gt; 1 ? `&lt;div style="font-size: 12px; color: var(--text-tertiary); margin-top: 8px;"&gt;+ ${duplicateCount - 1} 相关图片&lt;/div&gt;` : ''}
+              ${primaryNode.notes ? `&lt;div class="honor-notes"&gt;${primaryNode.notes}&lt;/div&gt;` : ''}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        `;
+      });
+      
+      html += '&lt;/div&gt;';
+      return html;
+    }
+
+    function renderPublicNodes() {
+      const publicNodes = filteredNodes.filter(n =&gt; n.type_guess === 'public node' || n.type_guess === 'poster' || n.type_guess === 'hero');
+      
+      if (publicNodes.length === 0) {
+        return `
+          &lt;div class="empty-state"&gt;
+            &lt;div class="empty-state-icon"&gt;🌐&lt;/div&gt;
+            &lt;div class="empty-state-text"&gt;No public nodes yet&lt;/div&gt;
+          &lt;/div&gt;
+        `;
+      }
+
+      let html = '&lt;div class="grid-view"&gt;';
+      publicNodes.forEach(node =&gt; {
+        html += renderCard(node);
+      });
+      html += '&lt;/div&gt;';
+      return html;
+    }
+
+    function renderCard(node) {
+      const typeClass = node.type_guess === 'public node' ? 'type-public' : `type-${node.type_guess}`;
+      const featuredClass = node.featured_candidate ? 'featured' : '';
+      const duplicateClass = node.is_duplicate ? 'duplicate' : '';
+      const orientation = node.image_info?.orientation || 'landscape';
+      
+      return `
+        &lt;div class="card ${featuredClass} ${duplicateClass}" data-id="${node.id}"&gt;
+          &lt;div class="card-img-wrap ${orientation}"&gt;
+            &lt;img class="card-img" src="${node.path}" alt="${node.title_guess}"&gt;
+          &lt;/div&gt;
+          &lt;div class="card-info"&gt;
+            &lt;div class="card-title"&gt;${node.title_guess}&lt;/div&gt;
+            &lt;div class="card-meta"&gt;
+              &lt;span class="badge ${typeClass}"&gt;${node.type_guess}&lt;/span&gt;
+              &lt;span class="badge owner-${node.owner_guess}"&gt;${node.owner_guess === 'personal' ? '👤' : node.owner_guess === 'team' ? '👥' : '❓'}&lt;/span&gt;
+              ${node.year_guess ? `&lt;span class="badge"&gt;${node.year_guess}&lt;/span&gt;` : ''}
+            &lt;/div&gt;
+            &lt;div class="card-work"&gt;
+              ${node.related_work_guess || 'Uncategorized'}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      `;
+    }
+
+    function attachCardEvents() {
+      document.querySelectorAll('[data-id]').forEach(el =&gt; {
+        el.onclick = () =&gt; openModal(parseInt(el.dataset.id));
+      });
+    }
+
+    function openModal(id) {
+      const node = nodes.find(n =&gt; n.id === id);
+      if (!node) return;
+
+      const overlay = document.getElementById('modalOverlay');
+      const title = document.getElementById('modalTitle');
+      const image = document.getElementById('modalImage');
+      const details = document.getElementById('modalDetails');
+
+      title.textContent = node.title_guess;
+      image.src = node.path;
+
+      const ownerClass = node.owner_guess === 'personal' ? 'personal' : node.owner_guess === 'team' ? 'team' : '';
+      const duplicateClass = node.is_duplicate ? 'warning' : '';
+
+      let contributorsHtml = '';
+      if (node.contributors &amp;&amp; node.contributors.length &gt; 0) {
+        contributorsHtml = `
+          &lt;div class="detail-item" style="grid-column: 1 / -1;"&gt;
+            &lt;span class="detail-label"&gt;Contributors&lt;/span&gt;
+            &lt;span class="detail-value"&gt;${node.contributors.join(', ')}&lt;/span&gt;
+          &lt;/div&gt;
+        `;
+      }
+
+      let contributionsHtml = '';
+      if (node.contributions &amp;&amp; node.contributions.length &gt; 0) {
+        contributionsHtml = `
+          &lt;div class="detail-item" style="grid-column: 1 / -1;"&gt;
+            &lt;span class="detail-label"&gt;Team Contributions&lt;/span&gt;
+            &lt;span class="detail-value"&gt;${node.contributions.join(' · ')}&lt;/span&gt;
+          &lt;/div&gt;
+        `;
+      }
+
+      details.innerHTML = `
+        &lt;div class="detail-grid"&gt;
+          &lt;div class="detail-item"&gt;
+            &lt;span class="detail-label"&gt;Filename&lt;/span&gt;
+            &lt;span class="detail-value"&gt;${node.filename}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="detail-item"&gt;
+            &lt;span class="detail-label"&gt;Artist&lt;/span&gt;
+            &lt;span class="detail-value personal"&gt;${node.artist || 'Ewan'}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="detail-item"&gt;
+            &lt;span class="detail-label"&gt;Ownership&lt;/span&gt;
+            &lt;span class="detail-value ${ownerClass}"&gt;${node.owner_guess === 'personal' ? '👤 Personal' : node.owner_guess === 'team' ? '👥 Team Collaboration' : 'Unknown'}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="detail-item"&gt;
+            &lt;span class="detail-label"&gt;Title (Guess)&lt;/span&gt;
+            &lt;span class="detail-value guess"&gt;${node.title_guess}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="detail-item"&gt;
+            &lt;span class="detail-label"&gt;Year (Guess)&lt;/span&gt;
+            &lt;span class="detail-value guess"&gt;${node.year_guess || '-'}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="detail-item"&gt;
+            &lt;span class="detail-label"&gt;Related Work (Guess)&lt;/span&gt;
+            &lt;span class="detail-value guess"&gt;${node.related_work_guess || '-'}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="detail-item"&gt;
+            &lt;span class="detail-label"&gt;Type (Guess)&lt;/span&gt;
+            &lt;span class="detail-value guess"&gt;${node.type_guess}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="detail-item"&gt;
+            &lt;span class="detail-label"&gt;Featured&lt;/span&gt;
+            &lt;span class="detail-value"&gt;${node.featured_candidate ? '⭐ Yes' : 'No'}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="detail-item"&gt;
+            &lt;span class="detail-label"&gt;Category&lt;/span&gt;
+            &lt;span class="detail-value"&gt;${node.category}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="detail-item"&gt;
+            &lt;span class="detail-label"&gt;Duplicate&lt;/span&gt;
+            &lt;span class="detail-value ${duplicateClass}"&gt;${node.is_duplicate ? '⚠️ Yes' : 'No'}&lt;/span&gt;
+          &lt;/div&gt;
+          ${contributorsHtml}
+          ${contributionsHtml}
+          ${node.notes ? `
+            &lt;div class="detail-item" style="grid-column: 1 / -1;"&gt;
+              &lt;span class="detail-label"&gt;Notes&lt;/span&gt;
+              &lt;span class="detail-value"&gt;${node.notes}&lt;/span&gt;
+            &lt;/div&gt;
+          ` : ''}
+        &lt;/div&gt;
+      `;
+
+      overlay.classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    document.getElementById('closeModal').onclick = closeModal;
+    document.getElementById('modalOverlay').onclick = (e) =&gt; {
+      if (e.target.id === 'modalOverlay') {
+        closeModal();
+      }
+    };
+
+    document.querySelectorAll('.nav-item').forEach(item =&gt; {
+      item.onclick = () =&gt; {
+        document.querySelectorAll('.nav-item').forEach(i =&gt; i.classList.remove('active'));
+        item.classList.add('active');
+        currentView = item.dataset.view;
+        render();
+      };
+    });
+
+    document.querySelectorAll('#typeFilters .filter-btn').forEach(btn =&gt; {
+      btn.onclick = () =&gt; {
+        document.querySelectorAll('#typeFilters .filter-btn').forEach(b =&gt; b.classList.remove('active'));
+        btn.classList.add('active');
+        currentType = btn.dataset.type;
+        filter();
+      };
+    });
+
+    document.querySelectorAll('#ownerFilters .filter-btn').forEach(btn =&gt; {
+      btn.onclick = () =&gt; {
+        document.querySelectorAll('#ownerFilters .filter-btn').forEach(b =&gt; b.classList.remove('active'));
+        btn.classList.add('active');
+        currentOwner = btn.dataset.owner;
+        filter();
+      };
+    });
+
+    document.getElementById('searchInput').oninput = (e) =&gt; {
+      currentSearch = e.target.value;
+      filter();
+    };
+
+    document.addEventListener('keydown', (e) =&gt; {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    loadNodes();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;

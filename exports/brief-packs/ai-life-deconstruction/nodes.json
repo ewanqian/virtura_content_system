@@ -1,0 +1,188 @@
+[
+  {
+    "id": 91,
+    "filename": "workshop-2025-ai-life-deconstruction-ewan-with-curator-yini.jpg",
+    "path": "data/images/workshop-2025-ai-life-deconstruction-ewan-with-curator-yini.jpg",
+    "title_guess": "2025 Ai Life Deconstruction Ewan With Curator Yini",
+    "year_guess": "2025",
+    "date_guess": null,
+    "related_work_guess": "AI Life Deconstruction",
+    "related_node_guess": "Ai Life Deconstruction",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "workshop",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1440x1080_140955",
+    "image_info": {
+      "width": 1440,
+      "height": 1080,
+      "aspect_ratio": 1.33,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.708584"
+  },
+  {
+    "id": 92,
+    "filename": "workshop-2025-ai-life-deconstruction-ewan-with-participant.jpg",
+    "path": "data/images/workshop-2025-ai-life-deconstruction-ewan-with-participant.jpg",
+    "title_guess": "2025 Ai Life Deconstruction Ewan With Participant",
+    "year_guess": "2025",
+    "date_guess": null,
+    "related_work_guess": "AI Life Deconstruction",
+    "related_node_guess": "Ai Life Deconstruction",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "workshop",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1440x1080_168187",
+    "image_info": {
+      "width": 1440,
+      "height": 1080,
+      "aspect_ratio": 1.33,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.708932"
+  },
+  {
+    "id": 93,
+    "filename": "workshop-2025-ai-life-deconstruction-group-photo.jpg",
+    "path": "data/images/workshop-2025-ai-life-deconstruction-group-photo.jpg",
+    "title_guess": "2025 Ai Life Deconstruction Group Photo",
+    "year_guess": "2025",
+    "date_guess": null,
+    "related_work_guess": "AI Life Deconstruction",
+    "related_node_guess": "Ai Life Deconstruction",
+    "type_guess": "public node",
+    "featured_candidate": false,
+    "category": "workshop",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1440x1080_148045",
+    "image_info": {
+      "width": 1440,
+      "height": 1080,
+      "aspect_ratio": 1.33,
+      "orientation": "landscape"
+    },
+    "notes": "合影",
+    "created_at": "2026-04-10T02:02:06.709187"
+  },
+  {
+    "id": 94,
+    "filename": "workshop-2025-ai-life-deconstruction-hangzhou-museum-promo.jpg",
+    "path": "data/images/workshop-2025-ai-life-deconstruction-hangzhou-museum-promo.jpg",
+    "title_guess": "2025 Ai Life Deconstruction Hangzhou Museum Promo",
+    "year_guess": "2025",
+    "date_guess": null,
+    "related_work_guess": "AI Life Deconstruction",
+    "related_node_guess": "Ai Life Deconstruction",
+    "type_guess": "hero",
+    "featured_candidate": true,
+    "category": "workshop",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1080x1178_180481",
+    "image_info": {
+      "width": 1080,
+      "height": 1178,
+      "aspect_ratio": 0.92,
+      "orientation": "square"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.709442"
+  },
+  {
+    "id": 95,
+    "filename": "workshop-2025-ai-life-deconstruction-participant-speaking.jpg",
+    "path": "data/images/workshop-2025-ai-life-deconstruction-participant-speaking.jpg",
+    "title_guess": "2025 Ai Life Deconstruction Participant Speaking",
+    "year_guess": "2025",
+    "date_guess": null,
+    "related_work_guess": "AI Life Deconstruction",
+    "related_node_guess": "Ai Life Deconstruction",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "workshop",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1440x1080_152441",
+    "image_info": {
+      "width": 1440,
+      "height": 1080,
+      "aspect_ratio": 1.33,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.709672"
+  },
+  {
+    "id": 96,
+    "filename": "workshop-2025-ai-life-deconstruction-scene.jpg",
+    "path": "data/images/workshop-2025-ai-life-deconstruction-scene.jpg",
+    "title_guess": "2025 Ai Life Deconstruction Scene",
+    "year_guess": "2025",
+    "date_guess": null,
+    "related_work_guess": "AI Life Deconstruction",
+    "related_node_guess": "Ai Life Deconstruction",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "workshop",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持"
+    ],
+    "is_duplicate": true,
+    "fingerprint": "1080x1178_180481",
+    "image_info": {
+      "width": 1080,
+      "height": 1178,
+      "aspect_ratio": 0.92,
+      "orientation": "square"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.709910"
+  }
+]

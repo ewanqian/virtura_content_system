@@ -1,0 +1,95 @@
+[
+  {
+    "id": 8,
+    "filename": "event-2025-babel-bottle-new-media-artist-simulator-exhibition.jpg",
+    "path": "data/images/event-2025-babel-bottle-new-media-artist-simulator-exhibition.jpg",
+    "title_guess": "2025 Babel Bottle New Media Artist Simulator Exhibition",
+    "year_guess": "2025",
+    "date_guess": null,
+    "related_work_guess": "New Media Artist Simulator",
+    "related_node_guess": "New Media Artist",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "event",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持"
+    ],
+    "is_duplicate": true,
+    "fingerprint": "1080x1350_149684",
+    "image_info": {
+      "width": 1080,
+      "height": 1350,
+      "aspect_ratio": 0.8,
+      "orientation": "square"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.684358"
+  },
+  {
+    "id": 64,
+    "filename": "project-new-media-artist-simulator-main.jpg",
+    "path": "data/images/project-new-media-artist-simulator-main.jpg",
+    "title_guess": "New Media Artist Simulator Main",
+    "year_guess": null,
+    "date_guess": null,
+    "related_work_guess": "New Media Artist Simulator",
+    "related_node_guess": "New Media Artist",
+    "type_guess": "hero",
+    "featured_candidate": true,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "2552x1356_149339",
+    "image_info": {
+      "width": 2552,
+      "height": 1356,
+      "aspect_ratio": 1.88,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.700435"
+  },
+  {
+    "id": 65,
+    "filename": "project-new-media-artist-simulator-ui.jpg",
+    "path": "data/images/project-new-media-artist-simulator-ui.jpg",
+    "title_guess": "New Media Artist Simulator Ui",
+    "year_guess": null,
+    "date_guess": null,
+    "related_work_guess": "New Media Artist Simulator",
+    "related_node_guess": "New Media Artist",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "2552x1356_395678",
+    "image_info": {
+      "width": 2552,
+      "height": 1356,
+      "aspect_ratio": 1.88,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.700668"
+  }
+]

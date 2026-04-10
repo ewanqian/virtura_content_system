@@ -1,0 +1,29 @@
+[
+  {
+    "id": 31,
+    "filename": "event-watching-coexistence-exhibition.jpg",
+    "path": "data/images/event-watching-coexistence-exhibition.jpg",
+    "title_guess": "Watching Coexistence Exhibition",
+    "year_guess": null,
+    "date_guess": null,
+    "related_work_guess": "Observation and Symbiosis",
+    "related_node_guess": "Watching Coexistence",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "event",
+    "owner_guess": "personal",
+    "artist": "Ewan",
+    "contributors": [],
+    "contributions": [],
+    "is_duplicate": false,
+    "fingerprint": "3840x2160_8465861",
+    "image_info": {
+      "width": 3840,
+      "height": 2160,
+      "aspect_ratio": 1.78,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.691446"
+  }
+]

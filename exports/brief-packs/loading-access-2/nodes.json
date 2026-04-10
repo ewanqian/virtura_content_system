@@ -1,0 +1,66 @@
+[
+  {
+    "id": 17,
+    "filename": "event-loading-access-2-exhibition-poster-main.jpg",
+    "path": "data/images/event-loading-access-2-exhibition-poster-main.jpg",
+    "title_guess": "Loading Access 2 Exhibition Poster Main",
+    "year_guess": "2024",
+    "date_guess": "2024-11-12",
+    "related_work_guess": "Loading Access 2",
+    "related_node_guess": "Loading Access",
+    "type_guess": "hero",
+    "featured_candidate": true,
+    "category": "event",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1080x1341_110283",
+    "image_info": {
+      "width": 1080,
+      "height": 1341,
+      "aspect_ratio": 0.81,
+      "orientation": "square"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.687261"
+  },
+  {
+    "id": 81,
+    "filename": "team-virtura-loading-access-2-exhibition-avatar.jpg",
+    "path": "data/images/team-virtura-loading-access-2-exhibition-avatar.jpg",
+    "title_guess": "Virtura Loading Access 2 Exhibition Avatar",
+    "year_guess": "2024",
+    "date_guess": "2024-11-12",
+    "related_work_guess": "Loading Access 2",
+    "related_node_guess": "Loading Access",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "team",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1440x1080_60988",
+    "image_info": {
+      "width": 1440,
+      "height": 1080,
+      "aspect_ratio": 1.33,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.706163"
+  }
+]

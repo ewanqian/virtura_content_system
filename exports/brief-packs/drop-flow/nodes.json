@@ -1,0 +1,322 @@
+[
+  {
+    "id": 51,
+    "filename": "project-dropflow-early-concept-final-2504.png",
+    "path": "data/images/project-dropflow-early-concept-final-2504.png",
+    "title_guess": "Dropflow Early Concept Final",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "Drop Flow",
+    "related_node_guess": "Dropflow",
+    "type_guess": "archive",
+    "featured_candidate": false,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "3840x2160_12031181",
+    "image_info": {
+      "width": 3840,
+      "height": 2160,
+      "aspect_ratio": 1.78,
+      "orientation": "landscape"
+    },
+    "notes": "概念设计",
+    "created_at": "2026-04-10T02:02:06.696371"
+  },
+  {
+    "id": 52,
+    "filename": "project-dropflow-early-concept-final-250419-01.png",
+    "path": "data/images/project-dropflow-early-concept-final-250419-01.png",
+    "title_guess": "Dropflow Early Concept Final 250419",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "Drop Flow",
+    "related_node_guess": "Dropflow",
+    "type_guess": "archive",
+    "featured_candidate": false,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "3840x2160_9249739",
+    "image_info": {
+      "width": 3840,
+      "height": 2160,
+      "aspect_ratio": 1.78,
+      "orientation": "landscape"
+    },
+    "notes": "概念设计",
+    "created_at": "2026-04-10T02:02:06.696773"
+  },
+  {
+    "id": 53,
+    "filename": "project-dropflow-early-concept-final-250419-02.png",
+    "path": "data/images/project-dropflow-early-concept-final-250419-02.png",
+    "title_guess": "Dropflow Early Concept Final 250419",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "Drop Flow",
+    "related_node_guess": "Dropflow",
+    "type_guess": "archive",
+    "featured_candidate": false,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "3840x2160_9000351",
+    "image_info": {
+      "width": 3840,
+      "height": 2160,
+      "aspect_ratio": 1.78,
+      "orientation": "landscape"
+    },
+    "notes": "概念设计",
+    "created_at": "2026-04-10T02:02:06.697100"
+  },
+  {
+    "id": 54,
+    "filename": "project-dropflow-early-concept-final-250419-03.png",
+    "path": "data/images/project-dropflow-early-concept-final-250419-03.png",
+    "title_guess": "Dropflow Early Concept Final 250419",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "Drop Flow",
+    "related_node_guess": "Dropflow",
+    "type_guess": "archive",
+    "featured_candidate": false,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "3840x2160_7543887",
+    "image_info": {
+      "width": 3840,
+      "height": 2160,
+      "aspect_ratio": 1.78,
+      "orientation": "landscape"
+    },
+    "notes": "概念设计",
+    "created_at": "2026-04-10T02:02:06.697358"
+  },
+  {
+    "id": 55,
+    "filename": "project-dropflow-early-concept-final-250426.png",
+    "path": "data/images/project-dropflow-early-concept-final-250426.png",
+    "title_guess": "Dropflow Early Concept Final",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "Drop Flow",
+    "related_node_guess": "Dropflow",
+    "type_guess": "archive",
+    "featured_candidate": false,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "3840x2160_13043097",
+    "image_info": {
+      "width": 3840,
+      "height": 2160,
+      "aspect_ratio": 1.78,
+      "orientation": "landscape"
+    },
+    "notes": "概念设计",
+    "created_at": "2026-04-10T02:02:06.697604"
+  },
+  {
+    "id": 56,
+    "filename": "project-dropflow-early-concept-sketch.jpg",
+    "path": "data/images/project-dropflow-early-concept-sketch.jpg",
+    "title_guess": "Dropflow Early Concept Sketch",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "Drop Flow",
+    "related_node_guess": "Dropflow",
+    "type_guess": "archive",
+    "featured_candidate": false,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1920x1080_220917",
+    "image_info": {
+      "width": 1920,
+      "height": 1080,
+      "aspect_ratio": 1.78,
+      "orientation": "landscape"
+    },
+    "notes": "概念草图, 概念设计",
+    "created_at": "2026-04-10T02:02:06.697826"
+  },
+  {
+    "id": 57,
+    "filename": "project-dropflow-main.jpg",
+    "path": "data/images/project-dropflow-main.jpg",
+    "title_guess": "Dropflow Main",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "Drop Flow",
+    "related_node_guess": "Dropflow",
+    "type_guess": "hero",
+    "featured_candidate": true,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "3840x2160_5489195",
+    "image_info": {
+      "width": 3840,
+      "height": 2160,
+      "aspect_ratio": 1.78,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.698088"
+  },
+  {
+    "id": 58,
+    "filename": "project-dropflow-poster-ufo-camp-2025.jpeg",
+    "path": "data/images/project-dropflow-poster-ufo-camp-2025.jpeg",
+    "title_guess": "Dropflow Poster Ufo Camp",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "Drop Flow",
+    "related_node_guess": "Dropflow",
+    "type_guess": "poster",
+    "featured_candidate": true,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "4032x3024_2712166",
+    "image_info": {
+      "width": 4032,
+      "height": 3024,
+      "aspect_ratio": 1.33,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.698440"
+  },
+  {
+    "id": 59,
+    "filename": "project-dropflow-pre-concept-sketch.jpg",
+    "path": "data/images/project-dropflow-pre-concept-sketch.jpg",
+    "title_guess": "Dropflow Pre Concept Sketch",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "Drop Flow",
+    "related_node_guess": "Dropflow",
+    "type_guess": "archive",
+    "featured_candidate": false,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1440x809_227558",
+    "image_info": {
+      "width": 1440,
+      "height": 809,
+      "aspect_ratio": 1.78,
+      "orientation": "landscape"
+    },
+    "notes": "概念草图, 概念设计",
+    "created_at": "2026-04-10T02:02:06.698771"
+  },
+  {
+    "id": 60,
+    "filename": "project-dropflow-virtura-collective-intro.jpg",
+    "path": "data/images/project-dropflow-virtura-collective-intro.jpg",
+    "title_guess": "Dropflow Virtura Collective Intro",
+    "year_guess": "2024",
+    "date_guess": "2024-11",
+    "related_work_guess": "Drop Flow",
+    "related_node_guess": "Dropflow",
+    "type_guess": "portrait",
+    "featured_candidate": false,
+    "category": "project",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "技术支持",
+      "基础设施"
+    ],
+    "is_duplicate": true,
+    "fingerprint": "3840x2160_5489195",
+    "image_info": {
+      "width": 3840,
+      "height": 2160,
+      "aspect_ratio": 1.78,
+      "orientation": "landscape"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.699094"
+  }
+]

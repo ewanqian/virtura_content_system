@@ -1,0 +1,95 @@
+[
+  {
+    "id": 14,
+    "filename": "event-2025-hangzhou-art-tech-biennale-group-photo.jpg",
+    "path": "data/images/event-2025-hangzhou-art-tech-biennale-group-photo.jpg",
+    "title_guess": "2025 Hangzhou Art Tech Biennale Group Photo",
+    "year_guess": "2025",
+    "date_guess": null,
+    "related_work_guess": "Hangzhou Art Tech Biennale",
+    "related_node_guess": "Hangzhou Art Tech",
+    "type_guess": "public node",
+    "featured_candidate": false,
+    "category": "event",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "2568x1926_261071",
+    "image_info": {
+      "width": 2568,
+      "height": 1926,
+      "aspect_ratio": 1.33,
+      "orientation": "landscape"
+    },
+    "notes": "合影",
+    "created_at": "2026-04-10T02:02:06.686357"
+  },
+  {
+    "id": 15,
+    "filename": "event-2025-hangzhou-art-tech-biennale-promo.jpg",
+    "path": "data/images/event-2025-hangzhou-art-tech-biennale-promo.jpg",
+    "title_guess": "2025 Hangzhou Art Tech Biennale Promo",
+    "year_guess": "2025",
+    "date_guess": null,
+    "related_work_guess": "Hangzhou Art Tech Biennale",
+    "related_node_guess": "Hangzhou Art Tech",
+    "type_guess": "hero",
+    "featured_candidate": true,
+    "category": "event",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1080x1440_187885",
+    "image_info": {
+      "width": 1080,
+      "height": 1440,
+      "aspect_ratio": 0.75,
+      "orientation": "portrait"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.686720"
+  },
+  {
+    "id": 16,
+    "filename": "event-2025-hangzhou-art-tech-biennale-scene.jpg",
+    "path": "data/images/event-2025-hangzhou-art-tech-biennale-scene.jpg",
+    "title_guess": "2025 Hangzhou Art Tech Biennale Scene",
+    "year_guess": "2025",
+    "date_guess": null,
+    "related_work_guess": "Hangzhou Art Tech Biennale",
+    "related_node_guess": "Hangzhou Art Tech",
+    "type_guess": "unknown",
+    "featured_candidate": false,
+    "category": "event",
+    "owner_guess": "team",
+    "artist": "Ewan",
+    "contributors": [
+      "VIRTURA Collective"
+    ],
+    "contributions": [
+      "基础设施"
+    ],
+    "is_duplicate": false,
+    "fingerprint": "1176x1042_80268",
+    "image_info": {
+      "width": 1176,
+      "height": 1042,
+      "aspect_ratio": 1.13,
+      "orientation": "square"
+    },
+    "notes": null,
+    "created_at": "2026-04-10T02:02:06.687036"
+  }
+]

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://virtura.local/schemas/workspace-record.schema.json",
+  "title": "Workspace Record",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "title",
+    "status",
+    "updatedAt"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable typed ID such as task:normalize-content-schema or thread:content-system-mvp"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "task",
+        "thread",
+        "checkpoint",
+        "decision",
+        "milestone",
+        "blocker",
+        "draft",
+        "handoff"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "active",
+        "blocked",
+        "accepted",
+        "done",
+        "archived"
+      ]
+    },
+    "sourceThread": {
+      "type": "string"
+    },
+    "sourceTask": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "target"
+        ],
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

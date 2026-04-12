@@ -1,0 +1,20 @@
+{
+  "id": "decision:split-intake-and-canonical-objects",
+  "type": "decision",
+  "title": "Split intake and canonical objects",
+  "summary": "Raw guessed asset records and durable content objects should not live in the same layer.",
+  "status": "accepted",
+  "sourceThread": "thread:content-system-mvp",
+  "sourceTask": "task:content-system-mvp",
+  "updatedAt": "2026-04-12T00:00:00Z",
+  "relations": [
+    {
+      "type": "affects",
+      "target": "spec:content-object-schema-v1"
+    },
+    {
+      "type": "originated_in",
+      "target": "thread:content-system-mvp"
+    }
+  ]
+}

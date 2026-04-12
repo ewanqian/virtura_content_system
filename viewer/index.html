@@ -1,1471 +1,1181 @@
-
-&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-  &lt;title&gt;Node Library | Image Asset Library&lt;/title&gt;
-  &lt;style&gt;
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>内容观察器 | 资产库</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg-primary: #050505;
-      --bg-secondary: #0a0a0a;
-      --bg-tertiary: #141414;
-      --bg-card: #1a1a1a;
-      --bg-card-hover: #252525;
-      
-      --border-color: #262626;
-      --border-hover: #333333;
-      
-      --text-primary: #fafafa;
-      --text-secondary: #a3a3a3;
-      --text-tertiary: #666666;
-      --text-muted: #525252;
-      
-      --accent-blue: #3b82f6;
-      --accent-blue-hover: #60a5fa;
-      --accent-green: #10b981;
-      --accent-purple: #8b5cf6;
-      --accent-orange: #f59e0b;
-      --accent-red: #ef4444;
-      
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
-      --shadow-md: 0 4px 6px rgba(0,0,0,0.5);
-      --shadow-lg: 0 10px 15px rgba(0,0,0,0.6);
-      --shadow-xl: 0 20px 25px rgba(0,0,0,0.7);
-      
-      --radius-sm: 4px;
-      --radius-md: 8px;
-      --radius-lg: 12px;
-      --radius-xl: 16px;
-      
-      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+      --bg: #07111b;
+      --bg-soft: #0d1824;
+      --panel: rgba(14, 24, 35, 0.92);
+      --panel-strong: #101c29;
+      --line: rgba(173, 216, 255, 0.12);
+      --line-strong: rgba(173, 216, 255, 0.22);
+      --text: #eef5ff;
+      --text-soft: #9fb3c8;
+      --text-dim: #6d8197;
+      --blue: #5aa6ff;
+      --cyan: #6de6d9;
+      --amber: #ffbf66;
+      --green: #4ade80;
+      --red: #ff7b7b;
+      --purple: #ac8fff;
+      --radius: 18px;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
       min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(90, 166, 255, 0.16), transparent 32%),
+        radial-gradient(circle at top right, rgba(109, 230, 217, 0.12), transparent 24%),
+        linear-gradient(180deg, #08111a 0%, #07111b 100%);
+      color: var(--text);
+      font-family: "SF Pro Display", "Inter", "Helvetica Neue", sans-serif;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
-    .container {
-      display: flex;
+    .shell {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
       min-height: 100vh;
     }
 
     .sidebar {
-      width: 280px;
-      background: var(--bg-secondary);
-      border-right: 1px solid var(--border-color);
-      padding: 24px 20px;
-      position: fixed;
+      position: sticky;
+      top: 0;
       height: 100vh;
+      padding: 24px 20px;
+      background: rgba(7, 17, 27, 0.9);
+      border-right: 1px solid var(--line);
+      backdrop-filter: blur(16px);
       overflow-y: auto;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
     }
 
-    .sidebar-header {
-      margin-bottom: 32px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-
-    .logo-icon {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-    }
-
-    .logo-text {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      color: var(--text-primary);
-    }
-
-    .logo-subtitle {
-      font-size: 12px;
-      color: var(--text-tertiary);
-      margin-left: 42px;
-      letter-spacing: 0.2px;
-    }
-
-    .nav-section {
+    .brand {
       margin-bottom: 28px;
     }
 
-    .nav-section-title {
-      font-size: 11px;
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(90, 166, 255, 0.94), rgba(172, 143, 255, 0.92));
+      color: #07111b;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-subtitle {
+      color: var(--text-soft);
+      font-size: 12px;
+      margin-top: 4px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: var(--text-muted);
+    }
+
+    .nav-label,
+    .section-label {
+      color: var(--text-dim);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       margin-bottom: 10px;
-      font-weight: 600;
-      padding-left: 4px;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 26px;
     }
 
     .nav-item {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 12px;
-      padding: 10px 12px;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      color: var(--text-secondary);
-      font-size: 14px;
-      margin-bottom: 4px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nav-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%) scaleY(0);
-      width: 3px;
-      height: 20px;
-      background: var(--accent-blue);
-      border-radius: 0 2px 2px 0;
-      transition: transform var(--transition-normal);
-    }
-
-    .nav-item:hover {
-      background: var(--bg-card);
-      color: var(--text-primary);
-    }
-
-    .nav-item.active {
-      background: var(--bg-card);
-      color: var(--text-primary);
-    }
-
-    .nav-item.active::before {
-      transform: translateY(-50%) scaleY(1);
-    }
-
-    .nav-item .icon {
-      font-size: 18px;
-      width: 24px;
-      text-align: center;
-      opacity: 0.9;
-    }
-
-    .nav-item .label {
-      flex: 1;
-      font-weight: 500;
-    }
-
-    .nav-item .count {
-      background: var(--bg-tertiary);
-      padding: 3px 8px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-tertiary);
-      min-width: 24px;
-      text-align: center;
-    }
-
-    .nav-item.active .count {
-      background: rgba(59, 130, 246, 0.15);
-      color: var(--accent-blue-hover);
-    }
-
-    .filter-section {
-      border-top: 1px solid var(--border-color);
-      padding-top: 24px;
-      margin-top: auto;
-    }
-
-    .search-box {
       width: 100%;
-      padding: 10px 14px 10px 40px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      color: var(--text-primary);
+      padding: 12px 14px;
+      border: 1px solid transparent;
+      border-radius: 14px;
+      background: transparent;
+      color: var(--text-soft);
+      cursor: pointer;
+      text-align: left;
+      transition: 180ms ease;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .nav-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .nav-count {
+      color: var(--text-dim);
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .control-block {
+      padding: 16px;
       margin-bottom: 16px;
-      transition: all var(--transition-fast);
-      font-family: inherit;
     }
 
-    .search-box::placeholder {
-      color: var(--text-tertiary);
+    .search {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      padding: 12px 14px;
+      margin-bottom: 16px;
     }
 
-    .search-box:focus {
-      outline: none;
-      border-color: var(--accent-blue);
-      background: var(--bg-card-hover);
-    }
+    .search::placeholder { color: var(--text-dim); }
 
-    .search-wrapper {
-      position: relative;
-    }
+    .filter-group { margin-bottom: 16px; }
 
-    .search-icon {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 14px;
-      opacity: 0.6;
-      pointer-events: none;
-    }
-
-    .filter-group {
-      margin-bottom: 20px;
-    }
-
-    .filter-group-title {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-      font-weight: 600;
-      padding-left: 4px;
-    }
-
-    .filter-buttons {
+    .chip-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .filter-btn {
-      padding: 6px 12px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
+    .chip {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-soft);
+      border-radius: 999px;
+      padding: 7px 10px;
       font-size: 12px;
-      color: var(--text-secondary);
-      transition: all var(--transition-fast);
-      font-family: inherit;
-      font-weight: 500;
+      cursor: pointer;
     }
 
-    .filter-btn:hover {
-      border-color: var(--border-hover);
-      color: var(--text-primary);
-      background: var(--bg-card-hover);
-    }
-
-    .filter-btn.active {
-      background: var(--accent-blue);
-      border-color: var(--accent-blue);
-      color: white;
-    }
-
-    .filter-btn.owner-personal.active {
-      background: var(--accent-green);
-      border-color: var(--accent-green);
-    }
-
-    .filter-btn.owner-team.active {
-      background: var(--accent-purple);
-      border-color: var(--accent-purple);
-    }
-
-    .stats-card {
-      margin-top: 20px;
-      padding: 16px;
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-color);
-    }
-
-    .stats-title {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-      font-weight: 600;
+    .chip.active {
+      color: #08111a;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      border-color: transparent;
     }
 
     .stats-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .stat-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .stat-box {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
     }
 
-    .stat-label {
+    .stat-box-label {
       font-size: 11px;
-      color: var(--text-tertiary);
-      letter-spacing: 0.2px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
     }
 
-    .stat-value {
-      font-size: 16px;
+    .stat-box-value {
+      font-size: 22px;
       font-weight: 700;
-      color: var(--text-primary);
-      letter-spacing: -0.3px;
-    }
-
-    .stat-value.warning {
-      color: var(--accent-orange);
+      letter-spacing: -0.03em;
     }
 
     .main {
-      flex: 1;
-      margin-left: 280px;
-      padding: 32px 40px;
+      padding: 30px 34px 46px;
     }
 
     .view-header {
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
 
     .view-title {
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--text-primary);
+      font-size: 34px;
+      letter-spacing: -0.05em;
       margin-bottom: 6px;
-      letter-spacing: -0.8px;
     }
 
     .view-description {
-      color: var(--text-secondary);
+      color: var(--text-soft);
       font-size: 14px;
-      letter-spacing: 0.2px;
+      max-width: 720px;
     }
 
-    .grid-view {
+    .overview-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .hero {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 24px;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top left, rgba(90, 166, 255, 0.18), transparent 45%),
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
     }
 
-    .masonry-view {
-      column-count: 4;
-      column-gap: 20px;
+    .hero-title {
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
     }
 
-    @media (max-width: 1400px) {
-      .masonry-view { column-count: 3; }
+    .hero-copy {
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.7;
     }
 
-    @media (max-width: 1100px) {
-      .masonry-view { column-count: 2; }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
 
-    @media (max-width: 700px) {
-      .masonry-view { column-count: 1; }
+    .metric-card {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
     }
 
-    .card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      cursor: pointer;
-      transition: all var(--transition-normal);
-      border: 1px solid var(--border-color);
-      position: relative;
-    }
-
-    .masonry-view .card {
-      break-inside: avoid;
-      margin-bottom: 20px;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-xl);
-      border-color: var(--border-hover);
-      background: var(--bg-card-hover);
-    }
-
-    .card.featured::before {
-      content: '★ Featured';
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      background: linear-gradient(135deg, var(--accent-orange) 0%, #fbbf24 100%);
-      color: #000;
-      padding: 4px 10px;
-      border-radius: var(--radius-sm);
+    .metric-label {
+      color: var(--text-dim);
       font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .metric-value {
+      font-size: 26px;
       font-weight: 700;
-      z-index: 10;
-      letter-spacing: 0.3px;
+      letter-spacing: -0.04em;
     }
 
-    .card.duplicate {
-      border-color: var(--accent-red);
+    .metric-note {
+      color: var(--text-soft);
+      font-size: 12px;
+      margin-top: 4px;
     }
 
-    .card.duplicate::after {
-      content: '⚠️ Duplicate';
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: var(--accent-red);
-      color: #fff;
-      padding: 4px 10px;
-      border-radius: var(--radius-sm);
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+    }
+
+    .card-panel {
+      padding: 20px;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .panel-kicker {
+      color: var(--text-dim);
       font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .panel-title {
+      font-size: 17px;
       font-weight: 700;
-      z-index: 10;
-      letter-spacing: 0.3px;
+      letter-spacing: -0.03em;
     }
 
-    .card-img-wrap {
-      position: relative;
-      background: var(--bg-tertiary);
-      overflow: hidden;
+    .stack-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .card-img-wrap.landscape {
-      aspect-ratio: 16/10;
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid transparent;
+      transition: 160ms ease;
     }
 
-    .card-img-wrap.portrait {
-      aspect-ratio: 3/4;
+    .list-item:hover {
+      border-color: var(--line-strong);
+      background: rgba(255, 255, 255, 0.06);
     }
 
-    .card-img-wrap.square {
-      aspect-ratio: 1/1;
+    .list-main {
+      min-width: 0;
     }
 
-    .card-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform var(--transition-slow);
-    }
-
-    .card:hover .card-img {
-      transform: scale(1.06);
-    }
-
-    .card-info {
-      padding: 16px 18px 18px;
-    }
-
-    .card-title {
+    .list-title {
       font-size: 14px;
       font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-      line-height: 1.4;
-      letter-spacing: -0.2px;
+      margin-bottom: 6px;
     }
 
-    .card-meta {
+    .list-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 10px;
+      gap: 8px;
+      color: var(--text-soft);
+      font-size: 12px;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       padding: 4px 8px;
-      background: var(--bg-tertiary);
-      border-radius: var(--radius-sm);
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-soft);
       font-size: 11px;
-      color: var(--text-tertiary);
-      font-weight: 500;
-      letter-spacing: 0.2px;
     }
 
-    .badge.type-hero { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-    .badge.type-poster { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
-    .badge.type-portrait { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; }
-    .badge.type-documentation { background: rgba(245, 158, 11, 0.15); color: #fde047; }
-    .badge.type-archive { background: rgba(249, 115, 22, 0.15); color: #fdba74; }
-    .badge.type-public { background: rgba(20, 184, 166, 0.15); color: #5eead4; }
-    .badge.owner-personal { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-    .badge.owner-team { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
-    .badge.owner-unknown { background: var(--bg-tertiary); color: #9ca3af; }
+    .badge.public { color: var(--cyan); border-color: rgba(109, 230, 217, 0.24); }
+    .badge.featured { color: var(--amber); border-color: rgba(255, 191, 102, 0.24); }
+    .badge.duplicate { color: var(--red); border-color: rgba(255, 123, 123, 0.22); }
 
-    .card-work {
-      font-size: 13px;
-      color: var(--text-tertiary);
-      letter-spacing: 0.1px;
-    }
-
-    .honor-wall {
+    .work-grid,
+    .asset-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
     }
 
-    .honor-card {
-      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
-      border-radius: var(--radius-xl);
+    .work-card,
+    .asset-card {
       overflow: hidden;
-      border: 1px solid var(--border-color);
-      transition: all var(--transition-normal);
       cursor: pointer;
+      transition: 180ms ease;
     }
 
-    .honor-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-xl);
-      border-color: var(--border-hover);
+    .work-card:hover,
+    .asset-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--line-strong);
     }
 
-    .honor-img {
+    .work-card-body,
+    .asset-card-body {
+      padding: 18px;
+    }
+
+    .work-card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .work-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .work-card-summary {
+      color: var(--text-soft);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .asset-image {
       width: 100%;
-      max-height: 400px;
+      height: 220px;
       object-fit: cover;
+      background: var(--panel-strong);
       display: block;
     }
 
-    .honor-info {
-      padding: 22px 24px 24px;
-    }
-
-    .honor-title {
-      font-size: 18px;
+    .asset-card-title {
+      font-size: 15px;
       font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-      letter-spacing: -0.4px;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
     }
 
-    .honor-work {
-      color: var(--accent-blue-hover);
+    .asset-card-subtitle {
+      color: var(--text-soft);
       font-size: 13px;
-      margin-bottom: 12px;
-      font-weight: 500;
     }
 
-    .honor-notes {
-      color: var(--text-secondary);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .timeline-view {
-      position: relative;
-      padding-left: 48px;
-    }
-
-    .timeline-view::before {
-      content: '';
-      position: absolute;
-      left: 16px;
-      top: 8px;
-      bottom: 8px;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--accent-blue), var(--border-color));
-      border-radius: 1px;
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 40px;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -40px;
-      top: 6px;
-      width: 14px;
-      height: 14px;
-      background: var(--accent-blue);
-      border-radius: 50%;
-      border: 4px solid var(--bg-primary);
-      box-shadow: 0 0 0 2px var(--accent-blue);
+    .timeline-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .timeline-year {
-      font-size: 28px;
+      padding: 18px;
+    }
+
+    .timeline-year-label {
+      font-size: 24px;
       font-weight: 700;
-      color: var(--accent-blue-hover);
-      margin-bottom: 20px;
-      letter-spacing: -0.8px;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+      color: var(--blue);
     }
 
-    .timeline-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .timeline-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--border-color);
-      cursor: pointer;
-      transition: all var(--transition-normal);
-    }
-
-    .timeline-card:hover {
-      border-color: var(--border-hover);
-      background: var(--bg-card-hover);
-      transform: translateY(-2px);
-    }
-
-    .timeline-card img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-    }
-
-    .timeline-card-info {
-      padding: 12px 14px 14px;
-    }
-
-    .timeline-card-title {
-      font-size: 13px;
-      color: var(--text-primary);
-      font-weight: 500;
-      letter-spacing: -0.2px;
-    }
-
-    .practice-map {
-      display: flex;
-      flex-direction: column;
-      gap: 36px;
-    }
-
-    .project-section {
-      background: var(--bg-card);
-      border-radius: var(--radius-xl);
-      padding: 28px;
-      border: 1px solid var(--border-color);
-    }
-
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .project-name {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text-primary);
-      letter-spacing: -0.6px;
-    }
-
-    .project-count {
-      background: var(--bg-tertiary);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      color: var(--text-secondary);
-      font-weight: 600;
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 14px;
-    }
-
-    .project-card {
-      position: relative;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      cursor: pointer;
-      aspect-ratio: 4/3;
-      border: 1px solid var(--border-color);
-      transition: all var(--transition-normal);
-    }
-
-    .project-card:hover {
-      border-color: var(--border-hover);
-      transform: scale(1.02);
-    }
-
-    .project-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform var(--transition-slow);
-    }
-
-    .project-card:hover img {
-      transform: scale(1.08);
-    }
-
-    .project-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 40%, transparent 70%);
-      opacity: 0;
-      transition: opacity var(--transition-normal);
-    }
-
-    .project-card:hover .project-card-overlay {
-      opacity: 1;
-    }
-
-    .empty-state {
+    .empty {
+      padding: 42px 24px;
       text-align: center;
-      padding: 100px 20px;
-      color: var(--text-tertiary);
-    }
-
-    .empty-state-icon {
-      font-size: 56px;
-      margin-bottom: 20px;
-      opacity: 0.6;
-    }
-
-    .empty-state-text {
-      font-size: 16px;
-      color: var(--text-secondary);
+      color: var(--text-soft);
+      border: 1px dashed var(--line);
+      border-radius: var(--radius);
     }
 
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(8px);
       display: none;
-      align-items: center;
-      justify-content: center;
+      place-items: center;
+      background: rgba(4, 8, 14, 0.86);
+      backdrop-filter: blur(12px);
       z-index: 1000;
-      padding: 24px;
+      padding: 20px;
     }
 
-    .modal-overlay.active {
-      display: flex;
-    }
+    .modal-overlay.active { display: grid; }
 
     .modal {
-      background: var(--bg-secondary);
-      border-radius: var(--radius-xl);
-      max-width: 1000px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--shadow-xl);
+      width: min(1120px, 100%);
+      max-height: 88vh;
+      overflow: auto;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
     }
 
-    .modal-header {
+    .modal-head {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 20px 28px;
-      border-bottom: 1px solid var(--border-color);
+      justify-content: space-between;
+      gap: 12px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--line);
     }
 
     .modal-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text-primary);
-      letter-spacing: -0.3px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
     }
 
     .close-btn {
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: var(--text-tertiary);
-      padding: 0;
       width: 36px;
       height: 36px;
-      line-height: 36px;
-      transition: color var(--transition-fast);
-      border-radius: var(--radius-sm);
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 20px;
     }
 
-    .close-btn:hover {
-      color: var(--text-primary);
-      background: var(--bg-card);
+    .modal-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 0;
     }
 
-    .modal-content {
-      display: flex;
-      flex-direction: column;
+    .modal-media {
+      background: #02070c;
+      padding: 24px;
+      border-right: 1px solid var(--line);
     }
 
-    .modal-image-container {
-      background: #000;
-      text-align: center;
-      padding: 32px;
+    .modal-media img {
+      width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 16px;
+      background: #02070c;
     }
 
-    .modal-image {
-      max-width: 100%;
-      max-height: 65vh;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .modal-details {
-      padding: 28px;
+    .modal-info {
+      padding: 24px;
     }
 
     .detail-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    @media (max-width: 700px) {
-      .detail-grid {
-        grid-template-columns: 1fr;
-      }
+      gap: 14px;
     }
 
     .detail-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
     }
 
     .detail-label {
+      display: block;
+      color: var(--text-dim);
       font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: var(--text-muted);
-      font-weight: 600;
+      letter-spacing: 0.09em;
+      margin-bottom: 5px;
     }
 
     .detail-value {
+      color: var(--text);
       font-size: 14px;
-      color: var(--text-primary);
-      line-height: 1.5;
+      line-height: 1.6;
+      word-break: break-word;
     }
 
-    .detail-value.guess {
-      color: var(--accent-orange);
-    }
+    @media (max-width: 1100px) {
+      .shell,
+      .hero,
+      .two-col,
+      .modal-body {
+        grid-template-columns: 1fr;
+      }
 
-    .detail-value.personal {
-      color: var(--accent-green);
-    }
-
-    .detail-value.team {
-      color: var(--accent-purple);
-    }
-
-    .detail-value.warning {
-      color: var(--accent-red);
-    }
-
-    @media (max-width: 900px) {
       .sidebar {
-        transform: translateX(-100%);
-        transition: transform var(--transition-normal);
-      }
-      .sidebar.open {
-        transform: translateX(0);
-      }
-      .main {
-        margin-left: 0;
+        position: static;
+        height: auto;
       }
     }
 
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+    @media (max-width: 780px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .main { padding: 22px 16px 28px; }
+      .sidebar { padding: 18px 16px; }
+      .hero-metrics,
+      .stats-grid { grid-template-columns: 1fr 1fr; }
     }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">◈</div>
+        <div class="brand-title">资产库</div>
+        <div class="brand-subtitle">内容观察器</div>
+      </div>
 
-    ::-webkit-scrollbar-track {
-      background: var(--bg-primary);
-    }
+      <div class="nav-label">观察视图</div>
+      <div class="nav">
+        <button class="nav-item active" data-view="overview">
+          <div class="nav-item-left"><span>🧭</span><span>系统概览</span></div>
+          <span class="nav-count" id="count-all">0</span>
+        </button>
+        <button class="nav-item" data-view="work-map">
+          <div class="nav-item-left"><span>🗺️</span><span>作品地图</span></div>
+          <span class="nav-count" id="count-projects">0</span>
+        </button>
+        <button class="nav-item" data-view="image-wall">
+          <div class="nav-item-left"><span>🖼️</span><span>资产墙</span></div>
+          <span class="nav-count" id="count-featured">0</span>
+        </button>
+        <button class="nav-item" data-view="archive">
+          <div class="nav-item-left"><span>📅</span><span>归档</span></div>
+          <span class="nav-count" id="count-years">0</span>
+        </button>
+        <button class="nav-item" data-view="public-signals">
+          <div class="nav-item-left"><span>🌐</span><span>公共信号</span></div>
+          <span class="nav-count" id="count-public">0</span>
+        </button>
+      </div>
 
-    ::-webkit-scrollbar-thumb {
-      background: var(--border-color);
-      border-radius: 4px;
-    }
+      <div class="panel control-block">
+        <div class="section-label">搜索</div>
+        <input class="search" id="searchInput" placeholder="搜索资产、作品、节点...">
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--text-tertiary);
-    }
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;div class="container"&gt;
-    &lt;div class="sidebar"&gt;
-      &lt;div class="sidebar-header"&gt;
-        &lt;div class="logo"&gt;
-          &lt;div class="logo-icon"&gt;◈&lt;/div&gt;
-          &lt;div class="logo-text"&gt;Node Library&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class="logo-subtitle"&gt;Image Asset Library&lt;/div&gt;
-      &lt;/div&gt;
+        <div class="filter-group">
+          <div class="section-label">所有者</div>
+          <div class="chip-row" id="ownerFilters">
+            <button class="chip active" data-owner="all">全部</button>
+            <button class="chip" data-owner="personal">个人</button>
+            <button class="chip" data-owner="team">团队</button>
+          </div>
+        </div>
 
-      &lt;div class="nav-section"&gt;
-        &lt;div class="nav-section-title"&gt;Views&lt;/div&gt;
-        &lt;div class="nav-item active" data-view="image-wall"&gt;
-          &lt;span class="icon"&gt;🖼️&lt;/span&gt;
-          &lt;span class="label"&gt;Image Wall&lt;/span&gt;
-          &lt;span class="count" id="count-all"&gt;0&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class="nav-item" data-view="practice-map"&gt;
-          &lt;span class="icon"&gt;🗺️&lt;/span&gt;
-          &lt;span class="label"&gt;Practice Map&lt;/span&gt;
-          &lt;span class="count" id="count-projects"&gt;0&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class="nav-item" data-view="archive"&gt;
-          &lt;span class="icon"&gt;📅&lt;/span&gt;
-          &lt;span class="label"&gt;Archive&lt;/span&gt;
-          &lt;span class="count" id="count-years"&gt;0&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class="nav-item" data-view="honor-wall"&gt;
-          &lt;span class="icon"&gt;🏆&lt;/span&gt;
-          &lt;span class="label"&gt;荣誉墙&lt;/span&gt;
-          &lt;span class="count" id="count-featured"&gt;0&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class="nav-item" data-view="public-nodes"&gt;
-          &lt;span class="icon"&gt;🌐&lt;/span&gt;
-          &lt;span class="label"&gt;Public Nodes&lt;/span&gt;
-          &lt;span class="count" id="count-public"&gt;0&lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+        <div class="filter-group">
+          <div class="section-label">类型</div>
+          <div class="chip-row" id="typeFilters">
+            <button class="chip active" data-type="all">全部</button>
+            <button class="chip" data-type="hero">主视觉</button>
+            <button class="chip" data-type="poster">海报</button>
+            <button class="chip" data-type="portrait">人像</button>
+            <button class="chip" data-type="documentation">文档</button>
+            <button class="chip" data-type="archive">归档</button>
+            <button class="chip" data-type="public node">公开</button>
+          </div>
+        </div>
 
-      &lt;div class="filter-section"&gt;
-        &lt;div class="search-wrapper"&gt;
-          &lt;span class="search-icon"&gt;🔍&lt;/span&gt;
-          &lt;input type="text" class="search-box" id="searchInput" placeholder="Search nodes..."&gt;
-        &lt;/div&gt;
-        
-        &lt;div class="filter-group"&gt;
-          &lt;div class="filter-group-title"&gt;Owner&lt;/div&gt;
-          &lt;div class="filter-buttons" id="ownerFilters"&gt;
-            &lt;button class="filter-btn active" data-owner="all"&gt;All&lt;/button&gt;
-            &lt;button class="filter-btn owner-personal" data-owner="personal"&gt;👤 Personal&lt;/button&gt;
-            &lt;button class="filter-btn owner-team" data-owner="team"&gt;👥 Team&lt;/button&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
+        <div class="section-label">观察统计</div>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-box-label">资产</div>
+            <div class="stat-box-value" id="stat-total">0</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">精选</div>
+            <div class="stat-box-value" id="stat-featured">0</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">作品</div>
+            <div class="stat-box-value" id="stat-works">0</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">重复项</div>
+            <div class="stat-box-value" id="stat-duplicates">0</div>
+          </div>
+        </div>
+      </div>
+    </aside>
 
-        &lt;div class="filter-group"&gt;
-          &lt;div class="filter-group-title"&gt;Type&lt;/div&gt;
-          &lt;div class="filter-buttons" id="typeFilters"&gt;
-            &lt;button class="filter-btn active" data-type="all"&gt;All&lt;/button&gt;
-            &lt;button class="filter-btn" data-type="hero"&gt;Hero&lt;/button&gt;
-            &lt;button class="filter-btn" data-type="poster"&gt;Poster&lt;/button&gt;
-            &lt;button class="filter-btn" data-type="portrait"&gt;Portrait&lt;/button&gt;
-            &lt;button class="filter-btn" data-type="documentation"&gt;Docs&lt;/button&gt;
-            &lt;button class="filter-btn" data-type="archive"&gt;Archive&lt;/button&gt;
-            &lt;button class="filter-btn" data-type="public node"&gt;Public&lt;/button&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
+    <main class="main">
+      <div id="viewContainer"></div>
+    </main>
+  </div>
 
-        &lt;div class="stats-card"&gt;
-          &lt;div class="stats-title"&gt;Library Stats&lt;/div&gt;
-          &lt;div class="stats-grid"&gt;
-            &lt;div class="stat-item"&gt;
-              &lt;span class="stat-label"&gt;Total Nodes&lt;/span&gt;
-              &lt;span class="stat-value" id="stat-total"&gt;0&lt;/span&gt;
-            &lt;/div&gt;
-            &lt;div class="stat-item"&gt;
-              &lt;span class="stat-label"&gt;Featured&lt;/span&gt;
-              &lt;span class="stat-value" id="stat-featured"&gt;0&lt;/span&gt;
-            &lt;/div&gt;
-            &lt;div class="stat-item"&gt;
-              &lt;span class="stat-label"&gt;Works&lt;/span&gt;
-              &lt;span class="stat-value" id="stat-works"&gt;0&lt;/span&gt;
-            &lt;/div&gt;
-            &lt;div class="stat-item"&gt;
-              &lt;span class="stat-label"&gt;Duplicates&lt;/span&gt;
-              &lt;span class="stat-value warning" id="stat-duplicates"&gt;0&lt;/span&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-head">
+        <div class="modal-title" id="modalTitle"></div>
+        <button class="close-btn" id="closeModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media">
+          <img id="modalImage" alt="">
+        </div>
+        <div class="modal-info">
+          <div class="detail-grid" id="modalDetails"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    &lt;div class="main"&gt;
-      &lt;div id="viewContainer"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class="modal-overlay" id="modalOverlay"&gt;
-    &lt;div class="modal"&gt;
-      &lt;div class="modal-header"&gt;
-        &lt;div class="modal-title" id="modalTitle"&gt;&lt;/div&gt;
-        &lt;button class="close-btn" id="closeModal"&gt;&amp;times;&lt;/button&gt;
-      &lt;/div&gt;
-      &lt;div class="modal-content"&gt;
-        &lt;div class="modal-image-container"&gt;
-          &lt;img id="modalImage" class="modal-image"&gt;
-        &lt;/div&gt;
-        &lt;div class="modal-details" id="modalDetails"&gt;&lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;script&gt;
+  <script>
     let nodes = [];
     let filteredNodes = [];
-    let currentView = 'image-wall';
+    let worksData = [];
+    let graphNodes = [];
+    let observerMetrics = {};
+    let currentView = 'overview';
     let currentType = 'all';
     let currentOwner = 'all';
     let currentSearch = '';
 
-    const viewDescriptions = {
-      'image-wall': 'Curated masonry view of all content nodes',
-      'practice-map': 'Projects organized by practice areas',
-      'archive': 'Timeline-based archival view',
-      'honor-wall': 'Featured candidate showcase',
-      'public-nodes': 'Public-ready assets'
+    const viewMeta = {
+      overview: {
+        title: '系统概览',
+        description: '以观察为优先的系统健康度、内容密度和公开信号汇总。'
+      },
+      'work-map': {
+        title: '作品地图',
+        description: '标准作品及其关联节点，作为对象层展示，而非单纯的资产堆积。'
+      },
+      'image-wall': {
+        title: '资产墙',
+        description: '所有筛选后的资产记录，适合可视化浏览和手动检查。'
+      },
+      archive: {
+        title: '归档',
+        description: '按年份归档的筛选资产集合。'
+      },
+      'public-signals': {
+        title: '公共信号',
+        description: '最可能在下游复用的主视觉、海报和公开节点候选。'
+      }
     };
 
-    async function loadNodes() {
+    async function loadObserverData() {
       try {
-        const response = await fetch('data/nodes.json');
-        nodes = await response.json();
-      } catch (e) {
-        nodes = [];
+        const response = await fetch('data/library.json');
+        if (!response.ok) throw new Error('library payload not found');
+        const payload = await response.json();
+        worksData = payload.works || [];
+        graphNodes = payload.nodes || [];
+        observerMetrics = payload.metrics || {};
+        nodes = (payload.assets || []).map(asset => ({
+          id: asset.id,
+          filename: asset.filename,
+          path: asset.path,
+          title_guess: asset.title,
+          year_guess: asset.year,
+          date_guess: asset.date,
+          related_work_guess: asset.relatedWorks?.[0] || null,
+          related_works: asset.relatedWorks || [],
+          related_node_guess: asset.relatedNodes?.[0] || null,
+          related_nodes: asset.relatedNodes || [],
+          type_guess: asset.typeGuess || '未知',
+          featured_candidate: asset.featured,
+          category: asset.category,
+          owner_guess: asset.owner,
+          artist: asset.artist,
+          contributors: asset.contributors || [],
+          contributions: asset.contributions || [],
+          is_duplicate: asset.is重复,
+          image_info: asset.imageInfo || {},
+          notes: asset.notes,
+          status: asset.status || '-',
+          summary: asset.summary || '',
+          timestamps: asset.timestamps || {}
+        }));
+      } catch (error) {
+        const fallback = await fetch('data/nodes.json');
+        nodes = await fallback.json();
+        worksData = [];
+        graphNodes = [];
+        observerMetrics = {};
       }
+
       filteredNodes = [...nodes];
       updateStats();
       render();
     }
 
     function updateStats() {
-      document.getElementById('count-all').textContent = nodes.length;
-      document.getElementById('count-featured').textContent = nodes.filter(n =&gt; n.featured_candidate).length;
-      document.getElementById('count-public').textContent = nodes.filter(n =&gt; n.type_guess === 'public node').length;
-      
-      const works = new Set(nodes.filter(n =&gt; n.related_work_guess).map(n =&gt; n.related_work_guess));
-      document.getElementById('count-projects').textContent = works.size;
-      
-      const years = new Set(nodes.filter(n =&gt; n.year_guess).map(n =&gt; n.year_guess));
-      document.getElementById('count-years').textContent = years.size;
+      const yearCount = new Set(nodes.filter(node => node.year_guess).map(node => node.year_guess)).size;
+      const workCount = worksData.length || new Set(nodes.filter(node => node.related_work_guess).map(node => node.related_work_guess)).size;
+      const featuredCount = observerMetrics.featuredCount ?? nodes.filter(node => node.featured_candidate).length;
+      const duplicateCount = observerMetrics.duplicateCount ?? nodes.filter(node => node.is_duplicate).length;
+      const publicCount = observerMetrics.publicReadyCount ?? nodes.filter(node => ['public node', 'poster', 'hero'].includes(node.type_guess)).length;
 
-      document.getElementById('stat-total').textContent = nodes.length;
-      document.getElementById('stat-featured').textContent = nodes.filter(n =&gt; n.featured_candidate).length;
-      document.getElementById('stat-works').textContent = works.size;
-      document.getElementById('stat-duplicates').textContent = nodes.filter(n =&gt; n.is_duplicate).length;
+      document.getElementById('count-all').textContent = String(nodes.length);
+      document.getElementById('count-projects').textContent = String(workCount);
+      document.getElementById('count-featured').textContent = String(featuredCount);
+      document.getElementById('count-years').textContent = String(yearCount);
+      document.getElementById('count-public').textContent = String(publicCount);
+
+      document.getElementById('stat-total').textContent = String(nodes.length);
+      document.getElementById('stat-featured').textContent = String(featuredCount);
+      document.getElementById('stat-works').textContent = String(workCount);
+      document.getElementById('stat-duplicates').textContent = String(duplicateCount);
     }
 
-    function filter() {
-      filteredNodes = nodes.filter(node =&gt; {
-        if (currentType !== 'all' &amp;&amp; node.type_guess !== currentType) {
-          return false;
-        }
-        if (currentOwner !== 'all' &amp;&amp; node.owner_guess !== currentOwner) {
-          return false;
-        }
-        if (currentSearch) {
-          const searchLower = currentSearch.toLowerCase();
-          const text = [
-            node.title_guess,
-            node.related_work_guess,
-            node.related_node_guess,
-            node.filename,
-            node.notes,
-            node.artist
-          ].join(' ').toLowerCase();
-          if (!text.includes(searchLower)) {
-            return false;
-          }
-        }
-        return true;
+    function filterNodes() {
+      filteredNodes = nodes.filter(node => {
+        if (currentType !== 'all' && node.type_guess !== currentType) return false;
+        if (currentOwner !== 'all' && node.owner_guess !== currentOwner) return false;
+        if (!currentSearch) return true;
+
+        const haystack = [
+          node.title_guess,
+          node.related_work_guess,
+          node.related_works?.join(' '),
+          node.related_node_guess,
+          node.related_nodes?.join(' '),
+          node.filename,
+          node.notes,
+          node.artist
+        ].join(' ').toLowerCase();
+
+        return haystack.includes(currentSearch.toLowerCase());
       });
+
       render();
     }
 
     function render() {
+      const view = viewMeta[currentView];
       const container = document.getElementById('viewContainer');
-      
-      const viewTitles = {
-        'image-wall': 'Image Wall',
-        'practice-map': 'Practice Map',
-        'archive': 'Archive',
-        'honor-wall': '荣誉墙',
-        'public-nodes': 'Public Nodes'
-      };
-
       let html = `
-        &lt;div class="view-header"&gt;
-          &lt;h1 class="view-title"&gt;${viewTitles[currentView]}&lt;/h1&gt;
-          &lt;p class="view-description"&gt;${viewDescriptions[currentView]}&lt;/p&gt;
-        &lt;/div&gt;
+        <header class="view-header">
+          <h1 class="view-title">${view.title}</h1>
+          <p class="view-description">${view.description}</p>
+        </header>
       `;
 
-      if (filteredNodes.length === 0) {
-        html += `
-          &lt;div class="empty-state"&gt;
-            &lt;div class="empty-state-icon"&gt;🔍&lt;/div&gt;
-            &lt;div class="empty-state-text"&gt;No nodes found matching your criteria&lt;/div&gt;
-          &lt;/div&gt;
-        `;
-        container.innerHTML = html;
-        return;
-      }
-
-      switch (currentView) {
-        case 'image-wall':
-          html += renderImageWall();
-          break;
-        case 'practice-map':
-          html += renderPracticeMap();
-          break;
-        case 'archive':
-          html += renderArchive();
-          break;
-        case 'honor-wall':
-          html += renderHonorWall();
-          break;
-        case 'public-nodes':
-          html += renderPublicNodes();
-          break;
-      }
+      if (currentView === 'overview') html += renderOverview();
+      if (currentView === 'work-map') html += renderWorkMap();
+      if (currentView === 'image-wall') html += renderAssetWall(filteredNodes);
+      if (currentView === 'archive') html += render归档();
+      if (currentView === 'public-signals') html += renderPublicSignals();
 
       container.innerHTML = html;
-      attachCardEvents();
+      attachAssetEvents();
     }
 
-    function renderImageWall() {
-      let html = '&lt;div class="masonry-view"&gt;';
-      filteredNodes.forEach(node =&gt; {
-        html += renderCard(node);
-      });
-      html += '&lt;/div&gt;';
-      return html;
-    }
+    function renderOverview() {
+      const topWorks = [...worksData].sort((a, b) => (b.assetCount || 0) - (a.assetCount || 0)).slice(0, 6);
+      const publicSignals = filteredNodes.filter(node => node.featured_candidate || ['public node', 'poster', 'hero'].includes(node.type_guess)).slice(0, 6);
+      const connectedNodes = [...graphNodes].sort((a, b) => (b.assetCount || 0) - (a.assetCount || 0)).slice(0, 6);
 
-    function renderPracticeMap() {
-      const workGroups = {};
-      filteredNodes.forEach(node =&gt; {
-        const work = node.related_work_guess || 'Uncategorized';
-        if (!workGroups[work]) workGroups[work] = [];
-        workGroups[work].push(node);
-      });
-
-      let html = '&lt;div class="practice-map"&gt;';
-      
-      const sortedWorks = Object.entries(workGroups).sort((a, b) =&gt; b[1].length - a[1].length);
-      
-      sortedWorks.forEach(([work, workNodes]) =&gt; {
-        html += `
-          &lt;div class="project-section"&gt;
-            &lt;div class="project-header"&gt;
-              &lt;div class="project-name"&gt;${work}&lt;/div&gt;
-              &lt;div class="project-count"&gt;${workNodes.length} nodes&lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class="project-grid"&gt;
-        `;
-        workNodes.forEach(node =&gt; {
-          html += `
-            &lt;div class="project-card" data-id="${node.id}"&gt;
-              &lt;img src="${node.path}" alt="${node.title_guess}"&gt;
-              &lt;div class="project-card-overlay"&gt;&lt;/div&gt;
-            &lt;/div&gt;
-          `;
-        });
-        html += '&lt;/div&gt;&lt;/div&gt;';
-      });
-      
-      html += '&lt;/div&gt;';
-      return html;
-    }
-
-    function renderArchive() {
-      const yearGroups = {};
-      filteredNodes.forEach(node =&gt; {
-        const year = node.year_guess || 'Unknown';
-        if (!yearGroups[year]) yearGroups[year] = [];
-        yearGroups[year].push(node);
-      });
-
-      let html = '&lt;div class="timeline-view"&gt;';
-      
-      const sortedYears = Object.keys(yearGroups).sort((a, b) =&gt; b.localeCompare(a));
-      
-      sortedYears.forEach(year =&gt; {
-        html += `
-          &lt;div class="timeline-item"&gt;
-            &lt;div class="timeline-year"&gt;${year}&lt;/div&gt;
-            &lt;div class="timeline-grid"&gt;
-        `;
-        yearGroups[year].forEach(node =&gt; {
-          html += `
-            &lt;div class="timeline-card" data-id="${node.id}"&gt;
-              &lt;img src="${node.path}" alt="${node.title_guess}"&gt;
-              &lt;div class="timeline-card-info"&gt;
-                &lt;div class="timeline-card-title"&gt;${node.title_guess}&lt;/div&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
-          `;
-        });
-        html += '&lt;/div&gt;&lt;/div&gt;';
-      });
-      
-      html += '&lt;/div&gt;';
-      return html;
-    }
-
-    function renderHonorWall() {
-      const featured = filteredNodes.filter(n =&gt; n.featured_candidate);
-      
-      if (featured.length === 0) {
-        return `
-          &lt;div class="empty-state"&gt;
-            &lt;div class="empty-state-icon"&gt;⭐&lt;/div&gt;
-            &lt;div class="empty-state-text"&gt;No featured candidates yet&lt;/div&gt;
-          &lt;/div&gt;
-        `;
-      }
-
-      const grouped = {};
-      featured.forEach(node =&gt; {
-        const work = node.related_work_guess || 'Uncategorized';
-        if (!grouped[work]) grouped[work] = [];
-        grouped[work].push(node);
-      });
-
-      let html = '&lt;div class="honor-wall"&gt;';
-      
-      Object.entries(grouped).forEach(([work, nodes]) =&gt; {
-        const primaryNode = nodes[0];
-        const duplicateCount = nodes.length;
-        
-        html += `
-          &lt;div class="honor-card" data-id="${primaryNode.id}"&gt;
-            &lt;img class="honor-img" src="${primaryNode.path}" alt="${primaryNode.title_guess}"&gt;
-            &lt;div class="honor-info"&gt;
-              &lt;div class="honor-title"&gt;${primaryNode.title_guess}&lt;/div&gt;
-              &lt;div class="honor-work"&gt;${work}&lt;/div&gt;
-              ${duplicateCount &gt; 1 ? `&lt;div style="font-size: 12px; color: var(--text-tertiary); margin-top: 8px;"&gt;+ ${duplicateCount - 1} 相关图片&lt;/div&gt;` : ''}
-              ${primaryNode.notes ? `&lt;div class="honor-notes"&gt;${primaryNode.notes}&lt;/div&gt;` : ''}
-            &lt;/div&gt;
-          &lt;/div&gt;
-        `;
-      });
-      
-      html += '&lt;/div&gt;';
-      return html;
-    }
-
-    function renderPublicNodes() {
-      const publicNodes = filteredNodes.filter(n =&gt; n.type_guess === 'public node' || n.type_guess === 'poster' || n.type_guess === 'hero');
-      
-      if (publicNodes.length === 0) {
-        return `
-          &lt;div class="empty-state"&gt;
-            &lt;div class="empty-state-icon"&gt;🌐&lt;/div&gt;
-            &lt;div class="empty-state-text"&gt;No public nodes yet&lt;/div&gt;
-          &lt;/div&gt;
-        `;
-      }
-
-      let html = '&lt;div class="grid-view"&gt;';
-      publicNodes.forEach(node =&gt; {
-        html += renderCard(node);
-      });
-      html += '&lt;/div&gt;';
-      return html;
-    }
-
-    function renderCard(node) {
-      const typeClass = node.type_guess === 'public node' ? 'type-public' : `type-${node.type_guess}`;
-      const featuredClass = node.featured_candidate ? 'featured' : '';
-      const duplicateClass = node.is_duplicate ? 'duplicate' : '';
-      const orientation = node.image_info?.orientation || 'landscape';
-      
       return `
-        &lt;div class="card ${featuredClass} ${duplicateClass}" data-id="${node.id}"&gt;
-          &lt;div class="card-img-wrap ${orientation}"&gt;
-            &lt;img class="card-img" src="${node.path}" alt="${node.title_guess}"&gt;
-          &lt;/div&gt;
-          &lt;div class="card-info"&gt;
-            &lt;div class="card-title"&gt;${node.title_guess}&lt;/div&gt;
-            &lt;div class="card-meta"&gt;
-              &lt;span class="badge ${typeClass}"&gt;${node.type_guess}&lt;/span&gt;
-              &lt;span class="badge owner-${node.owner_guess}"&gt;${node.owner_guess === 'personal' ? '👤' : node.owner_guess === 'team' ? '👥' : '❓'}&lt;/span&gt;
-              ${node.year_guess ? `&lt;span class="badge"&gt;${node.year_guess}&lt;/span&gt;` : ''}
-            &lt;/div&gt;
-            &lt;div class="card-work"&gt;
-              ${node.related_work_guess || 'Uncategorized'}
-            &lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
+        <div class="overview-stack">
+          <section class="panel hero">
+            <div>
+              <div class="hero-title">资产库已从图片库升级为内容观察器。</div>
+              <div class="hero-copy">
+                本页面将浏览器作为传感器和观察面板，用于展示系统内容密度、公开信号浮现位置，以及作品和节点如何围绕资产层形成关联。
+              </div>
+            </div>
+            <div class="hero-metrics">
+              <div class="metric-card">
+                <div class="metric-label">资产</div>
+                <div class="metric-value">${nodes.length}</div>
+                <div class="metric-note">当前可见资产记录</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">作品</div>
+                <div class="metric-value">${worksData.length}</div>
+                <div class="metric-note">标准项目对象</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">节点</div>
+                <div class="metric-value">${graphNodes.length}</div>
+                <div class="metric-note">可复用内容和公开节点</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">公共信号</div>
+                <div class="metric-value">${observerMetrics.publicReadyCount || 0}</div>
+                <div class="metric-note">主视觉/海报/公开节点候选</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="two-col">
+            <div class="panel card-panel">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-kicker">内容密度</div>
+                  <div class="panel-title">热门作品</div>
+                </div>
+              </div>
+              <div class="stack-list">
+                ${topWorks.map(work => `
+                  <div class="list-item">
+                    <div class="list-main">
+                      <div class="list-title">${work.title}</div>
+                      <div class="list-meta">
+                        <span>${work.assetCount || 0} 个资产</span>
+                        <span>${work.nodeTitles?.length || 0} 个节点</span>
+                        <span>${(work.years || []).join(', ') || '年份未知'}</span>
+                      </div>
+                    </div>
+                    <div class="chip-row">
+                      <span class="badge">${work.featuredCount || 0} 个精选</span>
+                    </div>
+                  </div>
+                `).join('') || `<div class="empty">尚未生成作品地图。</div>`}
+              </div>
+            </div>
+
+            <div class="panel card-panel">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-kicker">信号层</div>
+                  <div class="panel-title">可公开资产</div>
+                </div>
+              </div>
+              <div class="stack-list">
+                ${publicSignals.map(asset => `
+                  <div class="list-item" data-asset-id="${asset.id}">
+                    <div class="list-main">
+                      <div class="list-title">${asset.title_guess}</div>
+                      <div class="list-meta">
+                        <span>${asset.related_work_guess || '未分类'}</span>
+                        <span>${asset.type_guess || '未知'}</span>
+                        ${asset.year_guess ? `<span>${asset.year_guess}</span>` : ''}
+                      </div>
+                    </div>
+                    <div class="chip-row">
+                      ${asset.featured_candidate ? `<span class="badge featured">精选</span>` : ''}
+                    </div>
+                  </div>
+                `).join('') || `<div class="empty">暂无公开信号。</div>`}
+              </div>
+            </div>
+          </section>
+
+          <section class="two-col">
+            <div class="panel card-panel">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-kicker">节点层</div>
+                  <div class="panel-title">关联最多节点</div>
+                </div>
+              </div>
+              <div class="stack-list">
+                ${connectedNodes.map(node => `
+                  <div class="list-item">
+                    <div class="list-main">
+                      <div class="list-title">${node.title}</div>
+                      <div class="list-meta">
+                        <span>${node.assetCount || 0} 个资产</span>
+                        <span>${(node.workIds || []).length} 个关联作品</span>
+                      </div>
+                    </div>
+                  </div>
+                `).join('') || `<div class="empty">尚未生成节点图谱。</div>`}
+              </div>
+            </div>
+
+            <div class="panel card-panel">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-kicker">覆盖度</div>
+                  <div class="panel-title">分类分布</div>
+                </div>
+              </div>
+              <div class="stack-list">
+                ${Object.entries(observerMetrics.categoryCounts || {})
+                  .sort((a, b) => b[1] - a[1])
+                  .slice(0, 8)
+                  .map(([category, count]) => `
+                    <div class="list-item">
+                      <div class="list-main">
+                        <div class="list-title">${category}</div>
+                        <div class="list-meta"><span>${count} 个资产</span></div>
+                      </div>
+                    </div>
+                  `).join('') || `<div class="empty">暂无分类统计。</div>`}
+              </div>
+            </div>
+          </section>
+        </div>
       `;
     }
 
-    function attachCardEvents() {
-      document.querySelectorAll('[data-id]').forEach(el =&gt; {
-        el.onclick = () =&gt; openModal(parseInt(el.dataset.id));
+    function renderWorkMap() {
+      const works = worksData.length
+        ? worksData
+        : Array.from(new Set(filteredNodes.map(node => node.related_work_guess).filter(Boolean))).map(title => ({
+            id: title,
+            title,
+            summary: 'Fallback work group derived from viewer nodes.',
+            assetCount: filteredNodes.filter(node => node.related_work_guess === title).length,
+            nodeTitles: []
+          }));
+
+      if (!works.length) return `<div class="empty">当前筛选条件下没有找到作品地图。</div>`;
+
+      return `
+        <div class="work-grid">
+          ${works.map(work => `
+            <article class="panel work-card">
+              <div class="work-card-body">
+                <div class="work-card-top">
+                  <div class="work-card-title">${work.title}</div>
+                  <span class="badge">${work.assetCount || 0} assets</span>
+                </div>
+                <div class="work-card-summary">${work.summary || 'No summary yet.'}</div>
+                <div class="chip-row">
+                  ${(work.years || []).map(year => `<span class="badge">${year}</span>`).join('')}
+                  ${(work.nodeTitles || []).slice(0, 5).map(node => `<span class="badge public">${node}</span>`).join('')}
+                </div>
+              </div>
+            </article>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderAssetWall(items) {
+      if (!items.length) return `<div class="empty">当前筛选条件下没有匹配的资产。</div>`;
+      return `
+        <div class="asset-grid">
+          ${items.map(renderAssetCard).join('')}
+        </div>
+      `;
+    }
+
+    function render归档() {
+      const groups = {};
+      filteredNodes.forEach(node => {
+        const year = node.year_guess || '未知';
+        if (!groups[year]) groups[year] = [];
+        groups[year].push(node);
+      });
+
+      const years = Object.keys(groups).sort((a, b) => String(b).localeCompare(String(a)));
+      if (!years.length) return `<div class="empty">没有找到归档记录。</div>`;
+
+      return `
+        <div class="timeline-stack">
+          ${years.map(year => `
+            <section class="panel timeline-year">
+              <div class="timeline-year-label">${year}</div>
+              ${renderAssetWall(groups[year])}
+            </section>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderPublicSignals() {
+      const items = filteredNodes.filter(node => node.featured_candidate || ['public node', 'poster', 'hero'].includes(node.type_guess));
+      return renderAssetWall(items);
+    }
+
+    function renderAssetCard(asset) {
+      const workLine = (asset.related_works && asset.related_works.length > 0)
+        ? asset.related_works.join(' · ')
+        : (asset.related_work_guess || '未分类');
+
+      return `
+        <article class="panel asset-card" data-asset-id="${asset.id}">
+          ${asset.path ? `<img class="asset-image" src="../${asset.path}" alt="${asset.title_guess}" onerror="this.style.display='none'">` : ''}
+          <div class="asset-card-body">
+            <div class="asset-card-title">${asset.title_guess}</div>
+            <div class="chip-row" style="margin-bottom: 10px;">
+              <span class="badge">${asset.type_guess || '未知'}</span>
+              <span class="badge">${asset.owner_guess || '未知'}</span>
+              ${asset.year_guess ? `<span class="badge">${asset.year_guess}</span>` : ''}
+              ${asset.featured_candidate ? `<span class="badge featured">精选</span>` : ''}
+              ${asset.is_duplicate ? `<span class="badge duplicate">重复</span>` : ''}
+            </div>
+            <div class="asset-card-subtitle">${workLine}</div>
+          </div>
+        </article>
+      `;
+    }
+
+    function attachAssetEvents() {
+      document.querySelectorAll('[data-asset-id]').forEach(card => {
+        card.addEventListener('click', () => openModal(card.dataset.assetId));
       });
     }
 
     function openModal(id) {
-      const node = nodes.find(n =&gt; n.id === id);
-      if (!node) return;
+      const asset = nodes.find(node => String(node.id) === String(id));
+      if (!asset) return;
 
-      const overlay = document.getElementById('modalOverlay');
-      const title = document.getElementById('modalTitle');
+      document.getElementById('modalTitle').textContent = asset.title_guess || asset.filename || asset.id;
       const image = document.getElementById('modalImage');
-      const details = document.getElementById('modalDetails');
+      image.src = asset.path ? `../${asset.path}` : '';
+      image.alt = asset.title_guess || asset.filename || asset.id;
+      image.onerror = () => image.style.display = 'none';
 
-      title.textContent = node.title_guess;
-      image.src = node.path;
+      const details = [
+        ['文件名', asset.filename || '-'],
+        ['创作者', asset.artist || 'Ewan'],
+        ['所有权', asset.owner_guess || '-'],
+        ['状态', asset.status || '-'],
+        ['标题', asset.title_guess || '-'],
+        ['年份', asset.year_guess || '-'],
+        ['关联作品', (asset.related_works && asset.related_works.length > 0) ? asset.related_works.join(' · ') : (asset.related_work_guess || '-')],
+        ['关联节点', (asset.related_nodes && asset.related_nodes.length > 0) ? asset.related_nodes.join(' · ') : '-'],
+        ['类型', asset.type_guess || '-'],
+        ['分类', asset.category || '-'],
+        ['精选', asset.featured_candidate ? '是' : '否'],
+        ['重复', asset.is_duplicate ? '是' : '否']
+      ];
 
-      const ownerClass = node.owner_guess === 'personal' ? 'personal' : node.owner_guess === 'team' ? 'team' : '';
-      const duplicateClass = node.is_duplicate ? 'warning' : '';
+      if (asset.summary) details.push(['摘要', asset.summary]);
+      if (asset.notes) details.push(['备注', asset.notes]);
+      if (asset.contributors?.length) details.push(['贡献者', asset.contributors.join(', ')]);
+      if (asset.contributions?.length) details.push(['团队贡献', asset.contributions.join(' · ')]);
 
-      let contributorsHtml = '';
-      if (node.contributors &amp;&amp; node.contributors.length &gt; 0) {
-        contributorsHtml = `
-          &lt;div class="detail-item" style="grid-column: 1 / -1;"&gt;
-            &lt;span class="detail-label"&gt;Contributors&lt;/span&gt;
-            &lt;span class="detail-value"&gt;${node.contributors.join(', ')}&lt;/span&gt;
-          &lt;/div&gt;
-        `;
-      }
+      document.getElementById('modalDetails').innerHTML = details.map(([label, value]) => `
+        <div class="detail-item">
+          <span class="detail-label">${label}</span>
+          <span class="detail-value">${value}</span>
+        </div>
+      `).join('');
 
-      let contributionsHtml = '';
-      if (node.contributions &amp;&amp; node.contributions.length &gt; 0) {
-        contributionsHtml = `
-          &lt;div class="detail-item" style="grid-column: 1 / -1;"&gt;
-            &lt;span class="detail-label"&gt;Team Contributions&lt;/span&gt;
-            &lt;span class="detail-value"&gt;${node.contributions.join(' · ')}&lt;/span&gt;
-          &lt;/div&gt;
-        `;
-      }
-
-      details.innerHTML = `
-        &lt;div class="detail-grid"&gt;
-          &lt;div class="detail-item"&gt;
-            &lt;span class="detail-label"&gt;Filename&lt;/span&gt;
-            &lt;span class="detail-value"&gt;${node.filename}&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;div class="detail-item"&gt;
-            &lt;span class="detail-label"&gt;Artist&lt;/span&gt;
-            &lt;span class="detail-value personal"&gt;${node.artist || 'Ewan'}&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;div class="detail-item"&gt;
-            &lt;span class="detail-label"&gt;Ownership&lt;/span&gt;
-            &lt;span class="detail-value ${ownerClass}"&gt;${node.owner_guess === 'personal' ? '👤 Personal' : node.owner_guess === 'team' ? '👥 Team Collaboration' : 'Unknown'}&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;div class="detail-item"&gt;
-            &lt;span class="detail-label"&gt;Title (Guess)&lt;/span&gt;
-            &lt;span class="detail-value guess"&gt;${node.title_guess}&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;div class="detail-item"&gt;
-            &lt;span class="detail-label"&gt;Year (Guess)&lt;/span&gt;
-            &lt;span class="detail-value guess"&gt;${node.year_guess || '-'}&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;div class="detail-item"&gt;
-            &lt;span class="detail-label"&gt;Related Work (Guess)&lt;/span&gt;
-            &lt;span class="detail-value guess"&gt;${node.related_work_guess || '-'}&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;div class="detail-item"&gt;
-            &lt;span class="detail-label"&gt;Type (Guess)&lt;/span&gt;
-            &lt;span class="detail-value guess"&gt;${node.type_guess}&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;div class="detail-item"&gt;
-            &lt;span class="detail-label"&gt;Featured&lt;/span&gt;
-            &lt;span class="detail-value"&gt;${node.featured_candidate ? '⭐ Yes' : 'No'}&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;div class="detail-item"&gt;
-            &lt;span class="detail-label"&gt;Category&lt;/span&gt;
-            &lt;span class="detail-value"&gt;${node.category}&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;div class="detail-item"&gt;
-            &lt;span class="detail-label"&gt;Duplicate&lt;/span&gt;
-            &lt;span class="detail-value ${duplicateClass}"&gt;${node.is_duplicate ? '⚠️ Yes' : 'No'}&lt;/span&gt;
-          &lt;/div&gt;
-          ${contributorsHtml}
-          ${contributionsHtml}
-          ${node.notes ? `
-            &lt;div class="detail-item" style="grid-column: 1 / -1;"&gt;
-              &lt;span class="detail-label"&gt;Notes&lt;/span&gt;
-              &lt;span class="detail-value"&gt;${node.notes}&lt;/span&gt;
-            &lt;/div&gt;
-          ` : ''}
-        &lt;/div&gt;
-      `;
-
-      overlay.classList.add('active');
+      document.getElementById('modalOverlay').classList.add('active');
     }
 
     function closeModal() {
       document.getElementById('modalOverlay').classList.remove('active');
     }
 
-    document.getElementById('closeModal').onclick = closeModal;
-    document.getElementById('modalOverlay').onclick = (e) =&gt; {
-      if (e.target.id === 'modalOverlay') {
-        closeModal();
-      }
-    };
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('modalOverlay').addEventListener('click', event => {
+      if (event.target.id === 'modalOverlay') closeModal();
+    });
 
-    document.querySelectorAll('.nav-item').forEach(item =&gt; {
-      item.onclick = () =&gt; {
-        document.querySelectorAll('.nav-item').forEach(i =&gt; i.classList.remove('active'));
-        item.classList.add('active');
-        currentView = item.dataset.view;
+    document.querySelectorAll('.nav-item').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        currentView = button.dataset.view;
         render();
-      };
+      });
     });
 
-    document.querySelectorAll('#typeFilters .filter-btn').forEach(btn =&gt; {
-      btn.onclick = () =&gt; {
-        document.querySelectorAll('#typeFilters .filter-btn').forEach(b =&gt; b.classList.remove('active'));
-        btn.classList.add('active');
-        currentType = btn.dataset.type;
-        filter();
-      };
+    document.querySelectorAll('#ownerFilters .chip').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('#ownerFilters .chip').forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        currentOwner = button.dataset.owner;
+        filterNodes();
+      });
     });
 
-    document.querySelectorAll('#ownerFilters .filter-btn').forEach(btn =&gt; {
-      btn.onclick = () =&gt; {
-        document.querySelectorAll('#ownerFilters .filter-btn').forEach(b =&gt; b.classList.remove('active'));
-        btn.classList.add('active');
-        currentOwner = btn.dataset.owner;
-        filter();
-      };
+    document.querySelectorAll('#typeFilters .chip').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('#typeFilters .chip').forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        currentType = button.dataset.type;
+        filterNodes();
+      });
     });
 
-    document.getElementById('searchInput').oninput = (e) =&gt; {
-      currentSearch = e.target.value;
-      filter();
-    };
-
-    document.addEventListener('keydown', (e) =&gt; {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
+    document.getElementById('searchInput').addEventListener('input', event => {
+      currentSearch = event.target.value.trim();
+      filterNodes();
     });
 
-    loadNodes();
-  &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeModal();
+    });
+
+    loadObserverData();
+  </script>
+</body>
+</html>

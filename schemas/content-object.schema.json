@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://virtura.local/schemas/content-object.schema.json",
+  "title": "Content Object",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "title",
+    "status",
+    "timestamps"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable typed ID such as work:drop-flow or node:hangzhou-opening-drop-flow"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "asset",
+        "work",
+        "node",
+        "event",
+        "venue",
+        "note",
+        "person",
+        "collective",
+        "writing",
+        "spec",
+        "relation",
+        "concept",
+        "method"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "active",
+        "archived"
+      ]
+    },
+    "primaryContext": {
+      "type": "string",
+      "enum": [
+        "personal",
+        "collective",
+        "shared",
+        "external"
+      ]
+    },
+    "owners": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sourceRefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sourceRef"
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationRef"
+      }
+    },
+    "memory": {
+      "$ref": "#/$defs/memory"
+    },
+    "timestamps": {
+      "$ref": "#/$defs/timestamps"
+    }
+  },
+  "$defs": {
+    "sourceRef": {
+      "type": "object",
+      "required": [
+        "kind",
+        "ref"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "relationRef": {
+      "type": "object",
+      "required": [
+        "type",
+        "target"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "memory": {
+      "type": "object",
+      "properties": {
+        "semantic": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "episodic": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "procedural": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "timestamps": {
+      "type": "object",
+      "required": [
+        "createdAt",
+        "updatedAt"
+      ],
+      "properties": {
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

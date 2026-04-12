@@ -11,3 +11,18 @@ node_modules/
 *.swp
 *.swo
 *~
+__pycache__/
+
+# 敏感内容 - 不提交私人数据，只保留通用框架
+data/intake/*
+data/objects/*
+data/memory/*
+!data/examples/
+
+exports/brief-packs/*
+exports/review-sheets/*
+exports/website/*
+!exports/README.md
+
+viewer/data/*
+!viewer/index.html

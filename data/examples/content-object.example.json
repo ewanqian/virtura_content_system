@@ -1,0 +1,43 @@
+{
+  "id": "node:hangzhou-opening-drop-flow",
+  "type": "node",
+  "title": "Hangzhou Opening / Drop Flow",
+  "summary": "Public-facing event node for the Hangzhou presentation of Drop Flow.",
+  "status": "active",
+  "primaryContext": "shared",
+  "owners": [
+    "collective:virtura-collective"
+  ],
+  "tags": [
+    "event",
+    "public-node",
+    "exhibition"
+  ],
+  "sourceRefs": [
+    {
+      "kind": "asset",
+      "ref": "asset:event-2023-10-lonely-audiovisual-shanghai-broadcast-01"
+    }
+  ],
+  "relations": [
+    {
+      "type": "presented_as",
+      "target": "work:drop-flow"
+    }
+  ],
+  "memory": {
+    "semantic": [
+      "Used as a public-facing event node in portfolio and collective views."
+    ],
+    "episodic": [
+      "Created during first-wave normalization."
+    ],
+    "procedural": [
+      "Feature high-signal event assets first in brief packs."
+    ]
+  },
+  "timestamps": {
+    "createdAt": "2026-04-12T00:00:00Z",
+    "updatedAt": "2026-04-12T00:00:00Z"
+  }
+}

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>快速开始 - Virtura Node Weaver MCP</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2307111b'/><circle cx='50' cy='50' r='45' fill='none' stroke='%235aa6ff' stroke-width='2' opacity='0.3'/><text x='50' y='60' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle' fill='%236de6d9'>🧬</text></svg>">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-brand">
+          <div class="brand-mark">🧬</div>
+          <div class="brand-info">
+            <div class="brand-title">Virtura Node Weaver MCP</div>
+            <div class="brand-subtitle">文化基因编织器</div>
+          </div>
+        </a>
+        <button class="navbar-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="navbar-nav">
+          <li><a href="index.html" class="nav-link">首页</a></li>
+          <li><a href="quickstart.html" class="nav-link">快速开始</a></li>
+          <li><a href="api.html" class="nav-link">API文档</a></li>
+          <li><a href="examples.html" class="nav-link">示例</a></li>
+          <li><a href="release.html" class="nav-link">下载</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主要内容 -->
+  <main class="main-content">
+    <div class="container">
+      <!-- 页面标题 -->
+      <section class="page-header">
+        <div class="panel">
+          <h1 class="panel-title">🚀 快速开始</h1>
+          <p class="panel-subtitle">3分钟完成安装配置，开始使用Virtura Node Weaver MCP服务</p>
+        </div>
+      </section>
+
+      <!-- 环境要求 -->
+      <section class="requirements-section">
+        <div class="panel">
+          <h2 class="panel-title">📋 环境要求</h2>
+          <p class="panel-subtitle">确保您的系统满足以下要求</p>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-icon">🐍</div>
+              <h3 class="card-title">Python 3.8+</h3>
+              <p class="card-text">用于运行CLI工具和数据处理脚本</p>
+              <div class="code-block">
+                <pre><code>python3 --version
+# 输出: Python 3.8.0 或更高版本</code></pre>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-icon">📦</div>
+              <h3 class="card-title">Node.js 16+</h3>
+              <p class="card-text">仅MCP服务需要Node.js环境</p>
+              <div class="code-block">
+                <pre><code>node --version
+# 输出: v16.0.0 或更高版本</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 安装步骤 -->
+      <section class="installation-section">
+        <div class="panel">
+          <h2 class="panel-title">📥 安装步骤</h2>
+
+          <ol class="step-list">
+            <li>
+              <h3>1. 克隆仓库</h3>
+              <p>首先，克隆项目仓库到本地</p>
+              <div class="code-block">
+                <pre><code>git clone https://github.com/ewanqian/virtura_content_system.git
+cd virtura_content_system</code></pre>
+              </div>
+            </li>
+
+            <li>
+              <h3>2. 安装Python依赖</h3>
+              <p>安装CLI工具和数据处理脚本的依赖包</p>
+              <div class="code-block">
+                <pre><code>pip install -r cli/requirements.txt
+pip install -r scripts/requirements.txt</code></pre>
+              </div>
+            </li>
+
+            <li>
+              <h3>3. 安装MCP服务依赖</h3>
+              <p>进入mcp_server目录并安装Node.js依赖</p>
+              <div class="code-block">
+                <pre><code>cd mcp_server
+npm install
+cd ..</code></pre>
+              </div>
+            </li>
+
+            <li>
+              <h3>4. 配置MCP服务</h3>
+              <p>复制示例配置文件并进行必要的修改</p>
+              <div class="code-block">
+                <pre><code>cp config/mcp_config.example.yaml config/mcp_config.yaml</code></pre>
+              </div>
+              <p>编辑 <code>config/mcp_config.yaml</code> 文件，配置以下选项：</p>
+              <ul>
+                <li><strong>服务器配置</strong>：端口和主机地址</li>
+                <li><strong>内容路径</strong>：内容存储目录</li>
+                <li><strong>安全设置</strong>：API密钥和访问控制</li>
+                <li><strong>日志选项</strong>：日志级别和输出位置</li>
+              </ul>
+            </li>
+
+            <li>
+              <h3>5. 初始化内容系统</h3>
+              <p>运行初始化脚本，创建必要的目录结构</p>
+              <div class="code-block">
+                <pre><code>python3 scripts/factory_ingest.py init</code></pre>
+              </div>
+            </li>
+
+            <li>
+              <h3>6. 启动MCP服务</h3>
+              <p>使用标准脚本启动服务（默认作为stdio服务器）</p>
+              <div class="code-block">
+                <pre><code>./start_mcp_server.sh</code></pre>
+              </div>
+              <p>或者，您可以使用Node.js直接启动：</p>
+              <div class="code-block">
+                <pre><code>cd mcp_server
+npm start</code></pre>
+              </div>
+            </li>
+
+            <li>
+              <h3>7. 验证服务</h3>
+              <p>启动后，您可以使用以下方法验证服务是否正常运行：</p>
+              <div class="code-block">
+                <pre><code>cd mcp_server
+npm test</code></pre>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 配置Claude Desktop -->
+      <section class="claude-config-section">
+        <div class="panel">
+          <h2 class="panel-title">💻 配置Claude Desktop</h2>
+          <p class="panel-subtitle">让Claude Desktop能够访问您的MCP服务</p>
+
+          <ol class="step-list">
+            <li>
+              <h3>1. 定位配置文件</h3>
+              <p>在您的系统上找到Claude Desktop的配置文件：</p>
+              <ul>
+                <li><strong>macOS</strong>：<code>~/Library/Application Support/Claude/config.json</code></li>
+                <li><strong>Windows</strong>：<code>%APPDATA%/Claude/config.json</code></li>
+                <li><strong>Linux</strong>：<code>~/.config/Claude/config.json</code></li>
+              </ul>
+            </li>
+
+            <li>
+              <h3>2. 编辑配置文件</h3>
+              <p>在配置文件中添加MCP服务器配置：</p>
+              <div class="code-block">
+                <pre><code>{
+  "mcpServers": {
+    "virtura-content": {
+      "command": "node",
+      "args": ["/path/to/virtura_content_system/mcp_server/src/index.js"]
+    }
+  }
+}</code></pre>
+              </div>
+            </li>
+
+            <li>
+              <h3>3. 验证连接</h3>
+              <p>重启Claude Desktop后，您应该能在工具列表中看到Virtura Content System的工具。</p>
+              <p>您可以通过以下方式验证：</p>
+              <div class="code-block">
+                <pre><code>// 在Claude Desktop中测试
+content_system_list_types()</code></pre>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 基本使用 -->
+      <section class="usage-section">
+        <div class="panel">
+          <h2 class="panel-title">🎯 基本使用</h2>
+          <p class="panel-subtitle">完成安装后，您可以通过以下方式使用Virtura Node Weaver MCP</p>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-icon">💬</div>
+              <h3 class="card-title">Claude Desktop</h3>
+              <p class="card-text">在Claude Desktop的对话中直接使用工具：</p>
+              <div class="code-block">
+                <pre><code>// 搜索内容
+content_system_search({
+  "query": "AI",
+  "type": "work"
+})
+
+// 创建新作品
+content_system_create({
+  "type": "work",
+  "fields": {
+    "title": "AI生成艺术",
+    "description": "探索AI在艺术创作中的应用",
+    "tags": ["AI", "艺术", "创新"],
+    "date": "2026"
+  }
+})</code></pre>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-icon">⚙️</div>
+              <h3 class="card-title">命令行工具</h3>
+              <p class="card-text">使用CLI工具管理内容：</p>
+              <div class="code-block">
+                <pre><code>./weaver list --type work
+# 列出所有作品
+
+./weaver create --type node --title "AI生成工作流"
+# 创建新节点
+
+./weaver link --object1 work:drop-flow --object2 node:ai-generation-workflow --relation uses_method
+# 建立关联</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第一个流程 -->
+      <section class="first-flow-section">
+        <div class="panel">
+          <h2 class="panel-title">🏭 跑通第一个流程</h2>
+          <p class="panel-subtitle">使用投料工厂批量导入和处理内容</p>
+
+          <ol class="step-list">
+            <li>
+              <h3>1. 准备素材</h3>
+              <p>将您要导入的素材（图片、文档、聊天记录等）放入incoming目录</p>
+              <div class="code-block">
+                <pre><code>ls -la incoming/
+# 显示目录内容
+# image1.jpg
+# document.md
+# chat_history.json</code></pre>
+              </div>
+            </li>
+
+            <li>
+              <h3>2. 批量导入</h3>
+              <p>使用投料工厂批量导入素材，生成待审核清单</p>
+              <div class="code-block">
+                <pre><code>python3 scripts/factory_ingest.py import --dir incoming/
+# 输出处理结果</code></pre>
+              </div>
+            </li>
+
+            <li>
+              <h3>3. 查看待审核项目</h3>
+              <p>列出需要审核的待确认项目</p>
+              <div class="code-block">
+                <pre><code>python3 scripts/factory_ingest.py review --list
+# 输出待审核项目列表</code></pre>
+              </div>
+            </li>
+
+            <li>
+              <h3>4. 审核确认</h3>
+              <p>使用自然语言指令审核确认项目</p>
+              <div class="code-block">
+                <pre><code>python3 scripts/factory_ingest.py review --confirm "批准所有"
+# 审核通过，生成标准对象</code></pre>
+              </div>
+            </li>
+
+            <li>
+              <h3>5. 构建数据</h3>
+              <p>运行完整流水线，生成可视化数据</p>
+              <div class="code-block">
+                <pre><code>python3 scripts/build_pipeline.py
+# 构建数据并生成viewer所需的文件</code></pre>
+              </div>
+            </li>
+
+            <li>
+              <h3>6. 查看可视化</h3>
+              <p>启动本地服务查看可视化界面</p>
+              <div class="code-block">
+                <pre><code>python3 -m http.server 8080
+# 打开浏览器访问: http://localhost:8080/viewer/</code></pre>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 常见问题 -->
+      <section class="faq-section">
+        <div class="panel">
+          <h2 class="panel-title">❓ 常见问题</h2>
+
+          <div class="grid-2">
+            <div class="card">
+              <h3 class="card-title">服务启动失败</h3>
+              <p class="card-text">
+                <strong>问题</strong>：npm start命令失败<br>
+                <strong>解决</strong>：检查Node.js版本是否符合要求，或者重新安装依赖
+              </p>
+              <div class="code-block">
+                <pre><code>cd mcp_server
+rm -rf node_modules package-lock.json
+npm install</code></pre>
+              </div>
+            </div>
+            <div class="card">
+              <h3 class="card-title">Claude Desktop无法连接</h3>
+              <p class="card-text">
+                <strong>问题</strong>：配置后Claude Desktop看不到服务<br>
+                <strong>解决</strong>：检查config.json路径是否正确，或尝试重启Claude Desktop
+              </p>
+            </div>
+            <div class="card">
+              <h3 class="card-title">CLI命令不识别</h3>
+              <p class="card-text">
+                <strong>问题</strong>：./weaver: 没有那个文件或目录<br>
+                <strong>解决</strong>：检查weaver脚本的执行权限
+              </p>
+              <div class="code-block">
+                <pre><code>chmod +x weaver
+# 或使用Python直接运行
+python3 cli/weaver.py</code></pre>
+              </div>
+            </div>
+            <div class="card">
+              <h3 class="card-title">数据导入失败</h3>
+              <p class="card-text">
+                <strong>问题</strong>：factory_ingest.py import命令失败<br>
+                <strong>解决</strong>：检查incoming目录权限和文件格式
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 下一步 -->
+      <section class="next-steps-section">
+        <div class="panel">
+          <h2 class="panel-title">📖 下一步</h2>
+          <p class="panel-subtitle">您已经成功安装和配置了Virtura Node Weaver MCP，现在可以继续深入学习</p>
+
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-icon">📚</div>
+              <h3 class="card-title">API文档</h3>
+              <p class="card-text">详细了解所有可用的API接口和参数</p>
+              <a href="api.html" class="btn btn-secondary btn-small">
+                查看API文档
+              </a>
+            </div>
+            <div class="card">
+              <div class="card-icon">💡</div>
+              <h3 class="card-title">使用示例</h3>
+              <p class="card-text">浏览常见的使用场景和代码示例</p>
+              <a href="examples.html" class="btn btn-secondary btn-small">
+                查看示例
+              </a>
+            </div>
+            <div class="card">
+              <div class="card-icon">🔧</div>
+              <h3 class="card-title">CLI文档</h3>
+              <p class="card-text">详细了解命令行工具的使用方法</p>
+              <div class="code-block">
+                <pre><code>./weaver --help
+# 或查看完整文档
+cat README_CLI.md</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Virtura Node Weaver</h3>
+          <p class="text-soft">文化基因编织器 | Local-First, Agent-Native</p>
+        </div>
+        <div class="footer-section">
+          <h3>快速链接</h3>
+          <ul>
+            <li><a href="quickstart.html">快速开始</a></li>
+            <li><a href="api.html">API文档</a></li>
+            <li><a href="examples.html">使用示例</a></li>
+            <li><a href="release.html">下载中心</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>资源</h3>
+          <ul>
+            <li><a href="https://github.com" target="_blank">GitHub仓库</a></li>
+            <li><a href="https://github.com/ewanqian/virtura_content_system" target="_blank">项目地址</a></li>
+            <li><a href="https://docs.anthropic.com/claude/mcp.html" target="_blank">MCP协议</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Virtura Content System. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+<script src="js/main.js"></script>
+</html>

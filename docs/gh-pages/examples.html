@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用示例 - Virtura Node Weaver MCP</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2307111b'/><circle cx='50' cy='50' r='45' fill='none' stroke='%235aa6ff' stroke-width='2' opacity='0.3'/><text x='50' y='60' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle' fill='%236de6d9'>🧬</text></svg>">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-brand">
+          <div class="brand-mark">🧬</div>
+          <div class="brand-info">
+            <div class="brand-title">Virtura Node Weaver MCP</div>
+            <div class="brand-subtitle">文化基因编织器</div>
+          </div>
+        </a>
+        <button class="navbar-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="navbar-nav">
+          <li><a href="index.html" class="nav-link">首页</a></li>
+          <li><a href="quickstart.html" class="nav-link">快速开始</a></li>
+          <li><a href="api.html" class="nav-link">API文档</a></li>
+          <li><a href="examples.html" class="nav-link">示例</a></li>
+          <li><a href="release.html" class="nav-link">下载</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主要内容 -->
+  <main class="main-content">
+    <div class="container">
+      <!-- 页面标题 -->
+      <section class="page-header">
+        <div class="panel">
+          <h1 class="panel-title">💡 使用示例</h1>
+          <p class="panel-subtitle">常见使用场景和完整代码示例</p>
+        </div>
+      </section>
+
+      <!-- 基础使用 -->
+      <section class="basic-examples-section">
+        <div class="panel">
+          <h2 class="panel-title">🔰 基础使用</h2>
+
+          <div class="example-card">
+            <div class="example-header">
+              <div class="example-icon">🔍</div>
+              <div>
+                <h3 class="card-title">搜索和浏览内容</h3>
+                <p class="text-soft">快速查找和过滤您的内容库</p>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <pre><code>// 场景1: 搜索所有包含 "AI" 的内容
+content_system_search({
+  "query": "AI"
+})
+
+// 场景2: 仅搜索作品类型
+content_system_search({
+  "type": "work",
+  "limit": 20
+})
+
+// 场景3: 按年份和标签组合搜索
+content_system_search({
+  "type": "node",
+  "year": 2024,
+  "tags": ["展览", "新媒体艺术"]
+})
+
+// 场景4: 分页浏览大量内容
+content_system_search({
+  "type": "asset",
+  "limit": 50,
+  "offset": 100
+})</code></pre>
+            </div>
+          </div>
+
+          <div class="example-card">
+            <div class="example-header">
+              <div class="example-icon">➕</div>
+              <div>
+                <h3 class="card-title">创建内容对象</h3>
+                <p class="text-soft">创建各种类型的内容节点</p>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <pre><code>// 创建一个作品
+content_system_create({
+  "type": "work",
+  "fields": {
+    "title": "数字梦境",
+    "description": "探索人工智能与人类创造力边界的系列作品",
+    "summary": "通过算法生成与人工干预相结合的方式，探索新的艺术表达方式。",
+    "tags": ["数字艺术", "AI生成", "交互"],
+    "date": "2024",
+    "status": "published"
+  }
+})
+
+// 创建一个人物
+content_system_create({
+  "type": "person",
+  "fields": {
+    "name": "Ewan Qian",
+    "summary": "多媒体艺术家，专注于数字艺术与交互设计",
+    "tags": ["艺术家", "数字媒体", "交互"],
+    "status": "active"
+  }
+})
+
+// 创建一个展览节点
+content_system_create({
+  "type": "node",
+  "fields": {
+    "title": "杭州开幕展",
+    "description": "新媒体艺术与技术融合展览",
+    "tags": ["展览", "杭州", "新媒体"],
+    "date": "2024-03",
+    "status": "completed"
+  }
+})</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 关联关系 -->
+      <section class="relation-examples-section">
+        <div class="panel">
+          <h2 class="panel-title">🔗 建立关联关系</h2>
+
+          <div class="example-card">
+            <div class="example-header">
+              <div class="example-icon">👥</div>
+              <div>
+                <h3 class="card-title">作者与作品的关联</h3>
+                <p class="text-soft">将艺术家与他们的作品关联起来</p>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <pre><code>// 首先创建人物和作品
+const personResult = content_system_create({
+  "type": "person",
+  "fields": {
+    "name": "Ewan Qian",
+    "summary": "多媒体艺术家"
+  }
+})
+
+const workResult = content_system_create({
+  "type": "work",
+  "fields": {
+    "title": "Drop Flow",
+    "description": "交互式数字艺术作品"
+  }
+})
+
+// 建立作者关系
+content_system_link({
+  "source_id": personResult.id,
+  "target_id": workResult.id,
+  "relation_type": "author_of",
+  "fields": {
+    "description": "主要创作者",
+    "start_date": "2023"
+  }
+})
+
+// 查看完整信息
+content_system_get({
+  "id": workResult.id
+})</code></pre>
+            </div>
+          </div>
+
+          <div class="example-card">
+            <div class="example-header">
+              <div class="example-icon">🖼️</div>
+              <div>
+                <h3 class="card-title">作品在展览中展出</h3>
+                <p class="text-soft">建立作品与展览节点的关联</p>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <pre><code>// 创建展览节点
+const nodeResult = content_system_create({
+  "type": "node",
+  "fields": {
+    "title": "杭州开幕展",
+    "date": "2024-03"
+  }
+})
+
+// 将作品关联到展览
+content_system_link({
+  "source_id": "work:drop-flow",
+  "target_id": nodeResult.id,
+  "relation_type": "featured_in",
+  "fields": {
+    "description": "首次展出",
+    "notes": "主展厅中央位置"
+  }
+})
+
+// 也可以建立双向关联查看
+content_system_link({
+  "source_id": nodeResult.id,
+  "target_id": "work:drop-flow",
+  "relation_type": "features",
+  "fields": {
+    "description": "精选参展作品"
+  }
+})</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 完整工作流 -->
+      <section class="workflow-examples-section">
+        <div class="panel">
+          <h2 class="panel-title">🚀 完整工作流</h2>
+
+          <div class="example-card">
+            <div class="example-header">
+              <div class="example-icon">🏗️</div>
+              <div>
+                <h3 class="card-title">创建作品并建立完整关联</h3>
+                <p class="text-soft">从创建到关联的完整流程</p>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <pre><code>// ==========================================
+// 场景: 创建一个新作品并关联到人物和展览
+// ==========================================
+
+// 1. 创建艺术家
+const artistResult = content_system_create({
+  "type": "person",
+  "fields": {
+    "name": "Ewan Qian",
+    "summary": "多媒体艺术家，专注于数字艺术与交互设计",
+    "tags": ["艺术家", "数字媒体", "交互"]
+  }
+})
+
+// 2. 创建协作团队
+const collectiveResult = content_system_create({
+  "type": "collective",
+  "fields": {
+    "name": "VIRTURA 艺术实验室",
+    "summary": "跨学科艺术与技术研究团队",
+    "tags": ["团队", "研究", "艺术+科技"]
+  }
+})
+
+// 3. 创建新作品
+const workResult = content_system_create({
+  "type": "work",
+  "fields": {
+    "title": "Digital Dreams",
+    "description": "An interactive digital installation exploring AI creativity",
+    "summary": "通过算法生成与人工干预相结合的方式，探索新的艺术表达方式。",
+    "tags": ["数字艺术", "AI生成", "交互装置"],
+    "date": "2024",
+    "status": "published"
+  }
+})
+
+// 4. 创建展览节点
+const exhibitionResult = content_system_create({
+  "type": "node",
+  "fields": {
+    "title": "杭州开幕展",
+    "description": "新媒体艺术与技术融合展览",
+    "tags": ["展览", "杭州", "新媒体艺术"],
+    "date": "2024-03",
+    "status": "completed"
+  }
+})
+
+// 5. 关联作品到作者
+content_system_link({
+  "source_id": artistResult.id,
+  "target_id": workResult.id,
+  "relation_type": "author_of",
+  "fields": {
+    "description": "主要创作者",
+    "start_date": "2023"
+  }
+})
+
+// 6. 关联作品到团队
+content_system_link({
+  "source_id": collectiveResult.id,
+  "target_id": workResult.id,
+  "relation_type": "contributor_to",
+  "fields": {
+    "description": "技术支持与协作"
+  }
+})
+
+// 7. 关联作品到展览
+content_system_link({
+  "source_id": workResult.id,
+  "target_id": exhibitionResult.id,
+  "relation_type": "featured_in",
+  "fields": {
+    "description": "首次展出",
+    "location": "主展厅"
+  }
+})
+
+// 8. 获取作品完整信息，包含所有关联
+const completeWork = content_system_get({
+  "id": workResult.id,
+  "include_relations": true
+})
+
+console.log("完整作品信息:", completeWork)</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 内容组织 -->
+      <section class="organization-examples-section">
+        <div class="panel">
+          <h2 class="panel-title">📁 内容组织与导出</h2>
+
+          <div class="example-card">
+            <div class="example-header">
+              <div class="example-icon">📦</div>
+              <div>
+                <h3 class="card-title">批量导出内容</h3>
+                <p class="text-soft">将内容库导出为不同格式</p>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <pre><code>// 导出所有作品为JSON
+content_system_export({
+  "type": "work",
+  "format": "json"
+})
+
+// 导出特定对象为Markdown
+content_system_export({
+  "ids": ["work:drop-flow", "work:timer", "node:hangzhou-opening"],
+  "format": "markdown"
+})
+
+// 导出2024年的展览为CSV
+content_system_export({
+  "type": "node",
+  "tags": ["展览"],
+  "year": 2024,
+  "format": "csv"
+})
+
+// 导出所有公开内容
+content_system_export({
+  "type": "asset",
+  "tags": ["public"],
+  "format": "json",
+  "limit": 100
+})</code></pre>
+            </div>
+          </div>
+
+          <div class="example-card">
+            <div class="example-header">
+              <div class="example-icon">🏷️</div>
+              <div>
+                <h3 class="card-title">标签和分类管理</h3>
+                <p class="text-soft">使用标签组织和查找内容</p>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <pre><code>// 给作品添加详细标签
+content_system_create({
+  "type": "work",
+  "fields": {
+    "title": "AI艺术探索",
+    "tags": [
+      "AI生成",
+      "数字艺术",
+      "交互装置",
+      "机器学习",
+      "生成艺术",
+      "2024"
+    ]
+  }
+})
+
+// 按标签搜索
+content_system_search({
+  "tags": ["AI生成", "交互装置"]
+})
+
+// 结合类型和标签搜索
+content_system_search({
+  "type": "work",
+  "tags": ["数字艺术"],
+  "year": 2024
+})
+
+// 查找多个标签的交集
+content_system_search({
+  "type": "node",
+  "tags": ["展览", "新媒体艺术", "2024"]
+})</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLI 使用 -->
+      <section class="cli-examples-section">
+        <div class="panel">
+          <h2 class="panel-title">💻 CLI 命令行使用</h2>
+
+          <div class="example-card">
+            <div class="example-header">
+              <div class="example-icon">⚡</div>
+              <div>
+                <h3 class="card-title">常用CLI命令</h3>
+                <p class="text-soft">通过命令行管理内容库</p>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <pre><code># 列出所有作品
+./weaver list --type work
+
+# 列出特定类型，带标签过滤
+./weaver list --type node --tags "展览,2024"
+
+# 创建新节点
+./weaver create --type node \
+  --title "AI生成工作流" \
+  --tags "AI,工作流" \
+  --description "使用AI进行内容创作的工作流程"
+
+# 查看对象详情
+./weaver show --id work:drop-flow
+
+# 建立关联
+./weaver link \
+  --object1 work:drop-flow \
+  --object2 node:ai-generation-workflow \
+  --relation uses_method
+
+# 导出内容
+./weaver export --type work --format json
+
+# 软删除
+./weaver delete --id work:test-work</code></pre>
+            </div>
+          </div>
+
+          <div class="example-card">
+            <div class="example-header">
+              <div class="example-icon">🏭</div>
+              <div>
+                <h3 class="card-title">投料工厂流程</h3>
+                <p class="text-soft">批量导入和处理内容</p>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <pre><code># 把素材放入incoming目录
+mkdir -p incoming/
+cp ~/Downloads/images/* incoming/
+
+# 批量导入，生成待审核清单
+python3 scripts/factory_ingest.py import --dir incoming/
+
+# 查看待审核项目
+python3 scripts/factory_ingest.py review --list
+
+# 审核确认
+python3 scripts/factory_ingest.py review --confirm "批准所有"
+
+# 也可以使用自然语言指令
+python3 scripts/factory_ingest.py review --confirm "批准2024年的图片，其他待复核"
+
+# 一键运行全流水线
+python3 scripts/build_pipeline.py
+
+# 启动本地服务查看
+python3 -m http.server 8080
+# 打开浏览器: http://localhost:8080/viewer/</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 高级技巧 -->
+      <section class="advanced-examples-section">
+        <div class="panel">
+          <h2 class="panel-title">🔧 高级技巧</h2>
+
+          <div class="example-card">
+            <div class="example-header">
+              <div class="example-icon">🧠</div>
+              <div>
+                <h3 class="card-title">构建知识图谱</h3>
+                <p class="text-soft">创建丰富的内容关联网络</p>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <pre><code>// 构建一个艺术项目的完整知识图谱
+
+// 1. 创建核心概念
+content_system_create({
+  "type": "node",
+  "fields": {
+    "title": "AI艺术概念",
+    "summary": "探索人工智能与艺术融合的核心概念",
+    "tags": ["概念", "理论", "AI艺术"]
+  }
+})
+
+// 2. 创建方法流程
+content_system_create({
+  "type": "node",
+  "fields": {
+    "title": "生成式工作流",
+    "summary": "使用生成模型创作艺术的标准流程",
+    "tags": ["方法", "工作流", "生成式AI"]
+  }
+})
+
+// 3. 创建工具和规格
+content_system_create({
+  "type": "spec",
+  "fields": {
+    "title": "生成模型规格",
+    "summary": "推荐使用的AI模型和技术规格",
+    "tags": ["规格", "技术", "AI模型"]
+  }
+})
+
+// 4. 建立概念之间的关联
+content_system_link({
+  "source_id": "node:ai-art-concept",
+  "target_id": "node:generative-workflow",
+  "relation_type": "references",
+  "fields": {
+    "description": "概念通过工作流实现"
+  }
+})
+
+content_system_link({
+  "source_id": "node:generative-workflow",
+  "target_id": "spec:generative-model-spec",
+  "relation_type": "uses",
+  "fields": {
+    "description": "工作流使用此规格的模型"
+  }
+})
+
+// 5. 将具体作品关联到概念
+content_system_link({
+  "source_id": "work:digital-dreams",
+  "target_id": "node:ai-art-concept",
+  "relation_type": "part_of",
+  "fields": {
+    "description": "作品是AI艺术概念的实践"
+  }
+})
+
+content_system_link({
+  "source_id": "work:digital-dreams",
+  "target_id": "node:generative-workflow",
+  "relation_type": "uses_method",
+  "fields": {
+    "description": "使用生成式工作流创作"
+  }
+})</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 下一步 -->
+      <section class="next-steps-section">
+        <div class="panel">
+          <h2 class="panel-title">📖 继续探索</h2>
+
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-icon">📚</div>
+              <h3 class="card-title">API文档</h3>
+              <p class="card-text">详细了解所有API接口的完整说明</p>
+              <a href="api.html" class="btn btn-secondary btn-small">
+                查看API文档
+              </a>
+            </div>
+            <div class="card">
+              <div class="card-icon">🚀</div>
+              <h3 class="card-title">快速开始</h3>
+              <p class="card-text">如果您还没有安装，先完成安装配置</p>
+              <a href="quickstart.html" class="btn btn-secondary btn-small">
+                快速开始指南
+              </a>
+            </div>
+            <div class="card">
+              <div class="card-icon">📥</div>
+              <h3 class="card-title">下载最新版</h3>
+              <p class="card-text">获取最新版本和更新日志</p>
+              <a href="release.html" class="btn btn-secondary btn-small">
+                下载中心
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Virtura Node Weaver</h3>
+          <p class="text-soft">文化基因编织器 | Local-First, Agent-Native</p>
+        </div>
+        <div class="footer-section">
+          <h3>快速链接</h3>
+          <ul>
+            <li><a href="quickstart.html">快速开始</a></li>
+            <li><a href="api.html">API文档</a></li>
+            <li><a href="examples.html">使用示例</a></li>
+            <li><a href="release.html">下载中心</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>资源</h3>
+          <ul>
+            <li><a href="https://github.com" target="_blank">GitHub仓库</a></li>
+            <li><a href="https://github.com/ewanqian/virtura_content_system" target="_blank">项目地址</a></li>
+            <li><a href="https://docs.anthropic.com/claude/mcp.html" target="_blank">MCP协议</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Virtura Content System. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+<script src="js/main.js"></script>
+</html>

@@ -58,13 +58,17 @@
                 <span class="release-date">发布于 2026-04-13</span>
               </div>
               <div class="release-buttons">
-                <a href="https://github.com/ewanqian/virtura_content_system/archive/refs/tags/v1.0.0.tar.gz" class="btn btn-primary btn-small" download>
+                <a href="https://github.com/ewanqian/virtura_content_system/releases/download/v1.0.0/virtura-node-weaver-mcp-v1.0.0.zip" class="btn btn-primary btn-small" download>
                   <span>⬇️</span>
-                  下载源代码 (.tar.gz)
+                  下载正式发布包 (.zip)
+                </a>
+                <a href="https://github.com/ewanqian/virtura_content_system/archive/refs/tags/v1.0.0.tar.gz" class="btn btn-secondary btn-small" download>
+                  <span>📦</span>
+                  源代码 (.tar.gz)
                 </a>
                 <a href="https://github.com/ewanqian/virtura_content_system/archive/refs/tags/v1.0.0.zip" class="btn btn-secondary btn-small" download>
-                  <span>⬇️</span>
-                  下载源代码 (.zip)
+                  <span>📦</span>
+                  源代码 (.zip)
                 </a>
               </div>
             </div>
@@ -96,48 +100,68 @@
             </div>
 
             <div class="changelog-section">
-              <h4>✨ 新增功能</h4>
+              <h4>🎉 里程碑意义</h4>
               <ul class="changelog-list">
-                <li>完成MCP服务器实现，支持所有核心接口</li>
-                <li>创建CLI工具，提供完整的命令行管理功能</li>
-                <li>实现可视化观察器，提供5种视图模式</li>
-                <li>构建投料工厂系统，支持批量导入和处理内容</li>
-                <li>添加完整的文档和示例</li>
+                <li class="improve">标志VIRTURA生态从AI使用者转型为工具制作者</li>
+                <li class="improve">首个对外发布的标准MCP服务</li>
+                <li class="improve">本地优先的文化基因编织系统完整发布</li>
               </ul>
             </div>
 
             <div class="changelog-section">
-              <h4>🔧 改进优化</h4>
+              <h4>✨ 核心新功能</h4>
               <ul class="changelog-list">
-                <li class="improve">优化搜索算法，支持全文搜索和多维度过滤</li>
-                <li class="improve">增强关联系统，支持多种关系类型和属性</li>
-                <li class="improve">改进数据验证和错误处理机制</li>
-                <li class="improve">优化可视化界面，提升用户体验</li>
+                <li><strong>投料工厂</strong>：批量导入素材，自动元数据提取，自然语言审核</li>
+                <li><strong>Node Weaver CLI</strong>：create/link/list/show/delete/export完整命令体系</li>
+                <li><strong>MCP标准服务</strong>：search/get/create/link/export五大核心API</li>
+                <li><strong>可视化观察器</strong>：5种视图模式，纯静态HTML页面</li>
+                <li><strong>12种内容类型</strong>：work/node/asset/person/collective/relation/writing/spec/venue/concept/method/event</li>
               </ul>
             </div>
 
             <div class="changelog-section">
-              <h4>🐛 修复问题</h4>
+              <h4>🔧 架构特性</h4>
               <ul class="changelog-list">
-                <li class="fix">修复创建对象时的ID生成问题</li>
-                <li class="fix">解决关联关系建立时的重复处理问题</li>
-                <li class="fix">修复导出功能中的格式问题</li>
-                <li class="fix">优化内存使用，提升处理大量数据时的性能</li>
+                <li class="improve">三层核心架构：Intake投料层→Canonical标准对象层→Export导出层</li>
+                <li class="improve">三类记忆存储：Semantic事实记忆、Episodic事件记忆、Procedural流程记忆</li>
+                <li class="improve">轻量级关联系统：内置图数据库功能</li>
+                <li class="improve">本地优先设计：数据100%归用户所有</li>
+              </ul>
+            </div>
+
+            <div class="changelog-section">
+              <h4>📋 完整功能列表</h4>
+              <ul class="changelog-list">
+                <li>完整的对象CRUD操作（创建、读取、更新、删除）</li>
+                <li>双向关系建立和管理</li>
+                <li>全文搜索与多维度过滤</li>
+                <li>JSON/Markdown/CSV多格式导出</li>
+                <li>基于JSON Schema的数据验证</li>
+                <li>智能Typed ID自动生成</li>
+                <li>API密钥认证与审计日志</li>
+                <li>完整的文档和示例代码</li>
               </ul>
             </div>
 
             <div class="code-block" style="margin-top: 24px;">
-              <pre><code># 使用git直接克隆
-git clone https://github.com/ewanqian/virtura_content_system.git
-cd virtura_content_system
+              <pre><code># 1. 解压下载的正式发布包
+unzip virtura-node-weaver-mcp-v1.0.0.zip
+cd virtura-node-weaver-mcp-v1.0.0
 
-# 安装依赖
-cd mcp_server && npm install && cd ..
+# 2. 安装依赖
 pip install -r cli/requirements.txt
 pip install -r scripts/requirements.txt
+cd mcp_server && npm install && cd ..
 
-# 启动服务
-./start_mcp_server.sh</code></pre>
+# 3. 配置服务
+cp config/mcp_config.example.yaml config/mcp_config.yaml
+
+# 4. 启动MCP服务
+./start_mcp_server.sh
+
+# 5. 在浏览器中打开观察器
+python3 -m http.server 8080
+# 访问 http://localhost:8080/viewer/</code></pre>
             </div>
           </div>
         </div>

@@ -13,6 +13,10 @@ node_modules/
 *~
 __pycache__/
 
+# 发布包
+*.zip
+*.tar.gz
+
 # 敏感内容 - 不提交私人数据，只保留通用框架
 data/intake/*
 data/objects/*

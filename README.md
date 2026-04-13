@@ -1,144 +1,59 @@
-# Virtura Content System - Node Weaver
-### 🧬 个人/团队文化基因结构化存储与编织系统 | Local-First, Agent-Native
+# Node Weaver
 
-Node Weaver 是 VIRTURA 内容系统的核心本地工具，从原 Node Library 升级而来，目标是把零散的创作、方法、思想、事件转化为可沉淀、可复用、可关联的标准化节点，实现文化基因的传承与进化。
+### Public-safe release layer for a local-first content system
 
-它不是传统的CMS，不是素材库，不是笔记软件，它是**文化基因编织器**：
-- 把各种形式的原始素材变成结构化的标准节点
-- 建立节点之间的关联关系，形成知识图谱
-- 沉淀为长期可复用的文化资产，给AI、网站、作品集、团队协作使用
+Node Weaver is not a conventional CMS.
 
----
+It does not primarily exist to publish pages, manage a media library, or organize knowledge into a clean archive. It works on a more unstable problem inside creative practice: **memory breaks apart, experience falls out of connection, and creation keeps moving after that breakage has already happened.**
 
-## ✨ 核心特性
+What matters most in a practice often does not remain in a complete, stable, legible form. It survives as fragments: an unfinished judgment, an interrupted branch, a vague image, a term whose origin is no longer clear, an impulse that never became a finished statement but continues to shape later work. These things do not fully disappear. They simply fall out of the current chain of use. Over time, practice starts depending more and more on whatever is still easy to call up, easy to search, easy to reuse, while earlier, blurrier, more fractured material sinks out of reach. What remains is usually a small set of stable methods and repeatedly used paths.
 
-### 🎯 三层核心架构
-| 层级 | 功能 |
-|------|------|
-| **Intake 投料层** | 批量导入各种原始素材，自动结构化提取元数据 |
-| **Canonical 标准对象层** | 统一格式的标准对象：作品/节点/资产/关系/概念/方法/事件 |
-| **Export 导出层** | 输出各种格式给不同使用场景 |
+Node Weaver is designed to work against that contraction.
 
-### 🧠 三类记忆存储（对齐AI记忆架构）
-- **Semantic 事实记忆**：作品、资产、概念、方法等稳定事实
-- **Episodic 事件记忆**：项目历程、活动、事件等发生过的内容
-- **Procedural 流程记忆**：工作方法、流程、规范等可复用的经验
+It is not meant to turn the past into a neat archive, and it is not meant to compress a person into a more efficient knowledge structure. It is closer to an active inventory. Works, concepts, methods, events, notes, and relations are taken apart, marked, and rewoven into a node network that can be re-entered later. The important thing is not simply to save material, but to reconnect it. An older work matters not only because of what it once completed, but because it may still connect to several later judgments. A suspended idea matters not because it is already mature, but because it may intervene again at another point in time.
 
-### 🛠️ 四大核心模块
-1. **投料工厂（Ingest Factory）**
-   - 支持批量导入：聊天记录导出(.txt/.json/.md)、Markdown笔记、图片文件夹、旧数据备份
-   - 自动元数据提取：AI识别标题、年份、类型、标签、关联关系
-   - 自动去重：文件哈希+内容指纹双重检测重复内容
-   - 自然语言审核：支持中文指令批量确认/修改提取结果
+In that sense, Node Weaver is both a content system and a way of reading a practice back to oneself. Not by abstractly asking “who am I,” but by tracing more concrete questions: which themes keep returning, where breaks happened, which ideas keep reappearing in altered forms across projects, how one judgment drifted into another. Once those patterns become visible, practice no longer stays fully controlled by only the present version of the self. Past, future, unfinished, and misread versions of a practice can all remain active inside the same network.
 
-2. **Node Weaver CLI（节点编织器命令行）**
-   - 核心命令：`create`创建对象、`link`双向关联、`list`搜索过滤、`show`查看详情、`delete`软删除、`export`多格式导出
-   - 自动生成全局唯一Typed ID：格式如`work:drop-flow`、`node:ai-generation-method`
-   - 内置Schema校验：保证数据格式规范统一
-   - 全中文友好输出，适合自然语言指令调用
+This is also where AI becomes more legible. It is not the author, not the conclusion, and not a substitute for artistic judgment. A better role is external memory: a temporary interface for recall, grouping, association, and structural organization. It can help surface what has become too large to hold linearly, but it should not decide what is important. The more clearly the system is structured, the more it allows judgment to be taken back rather than handed over.
 
-3. **MCP 标准服务**
-   - 符合Anthropic MCP协议规范，所有Claude对话和AI代理可直接调用
-   - 核心API：搜索内容、获取对象详情、创建对象、建立关联、导出内容
-   - 本地运行，不需要网络，默认仅返回非敏感内容，安全可靠
-   - 支持与workspace tracker无缝对接
+That is why Node Weaver should not remain a sealed archival tool. Openness is not an extra feature here; it is part of the structure. Openness means nodes can keep growing, relations can keep being revised, old material can be reinterpreted, and new paths can emerge from earlier fragments. That does not mean surrendering control to platforms or models. It means preserving the ability to fork, revise, reconnect, and continue shaping one’s own content system over time.
 
-4. **全中文可视化观察器**
-   - 5种视图：系统概览、作品地图、资产墙、归档、公共信号
-   - 直观查看内容密度、关联关系、公共信号
-   - 纯静态页面，不需要服务端，打开即可使用
+From that perspective, Node Weaver does not only preserve outcomes, and it does not only preserve useful information. It should also preserve misreadings, ambiguities, abandoned branches, and impulses that once broke off but may still matter. What it preserves is not a finished self-image, but a changing, interruptible, reconnectable creative subject. The point is not to repair every fragment into a single coherent narrative. The point is to let fragments remain fragments, while still allowing them to shape the future.
+
+Node Weaver can therefore be understood as creative memory infrastructure. Its problem is not “how do we save everything perfectly,” but “how do things that have already drifted away still become able to return.” What it tries to build is not a closed model of a mind, but a content network that allows breakage, blur, misreading, and renewed intervention.
+
+What it ultimately weaves is not an archive, but the possibility of future action.
 
 ---
 
-## 🚀 快速开始
+## What This Public Repository Includes
 
-### 环境要求
-- Python 3.8+
-- Node.js 16+（仅MCP服务需要）
+- organizes works, nodes, assets, and relations in a local-first structure
+- helps clean duplicate naming, work/version confusion, and ownership overlap
+- provides a public-safe framing of the system and its direction
+- includes lightweight example data and a minimal export example
+- keeps public-safe export as a derived layer rather than the main working layer
 
-### 1. 安装依赖
-```bash
-# 安装Python依赖
-pip install -r cli/requirements.txt
-pip install -r scripts/requirements.txt
+## What It Is Not
 
-# （可选）安装MCP服务依赖
-cd mcp_server && npm install
-```
+- not a SaaS CMS
+- not a final public website by itself
+- not a generic DAM product
+- not a replacement for creative judgment
 
-### 2. 跑通第一个流程
-```bash
-# 1. 把要导入的素材放进incoming目录
-# 2. 投料工厂批量导入，生成待审核清单
-python3 scripts/factory_ingest.py import --dir incoming/
+## Current State
 
-# 3. 查看待审核项目
-python3 scripts/factory_ingest.py review --list
+Node Weaver is already usable as a supervised local content system, but this repository is only the public-safe release layer.
 
-# 4. 审核确认，生成标准对象
-python3 scripts/factory_ingest.py review --confirm "批准所有"
+The full internal working repository contains more material, more tooling, and more review-state complexity than should be published directly.
 
-# 5. 一键运行全流水线，生成viewer数据
-python3 scripts/build_pipeline.py
+The current emphasis is:
 
-# 6. 启动本地服务查看可视化界面
-python3 -m http.server 8080
-# 打开 http://localhost:8080/viewer/ 即可浏览
-```
+- stabilizing work lines and dated public nodes
+- reducing generic duplicates
+- keeping public-safe outputs separate from the internal working repository
+- making the structure clearer for future portfolio and archive use
 
-### 3. 快速操作示例
-```bash
-# 列出所有作品
-./weaver list --type work
+For publication boundaries, see:
 
-# 创建新节点
-./weaver create --type node --title "AI生成工作流" --tags "AI,工作流"
-
-# 给两个对象建立关联
-./weaver link --object1 work:drop-flow --object2 node:ai-generation-workflow --relation uses_method
-
-# （可选）启动MCP服务，让其他AI对话可以访问你的内容库
-./start_mcp_server.sh
-```
-
----
-
-## 🔗 和 Workspace Tracker 的关系
-两个系统是互补的分层架构，边界清晰，天然打通：
-| 系统 | 定位 | 存储内容 |
-|------|------|----------|
-| **Content System（本项目）** | 📦 长期沉淀层 | 已经固化的、有长期价值的内容对象 |
-| **Workspace Tracker** | ⚡ 过程执行层 | 正在进行的任务、对话上下文、临时决策 |
-
-**协作规则**：Workspace Tracker执行过程中可以直接检索Content System的历史资源，任务完成后一键沉淀到Content System成为标准节点。
-
----
-
-## ❓ 它不是什么
-- ❌ 不是在线SaaS服务，完全本地优先，数据100%归你所有
-- ❌ 不是传统笔记软件，不支持自由编辑，只维护结构化标准对象
-- ❌ 不是企业级DAM系统，专注个人/小型团队的文化基因沉淀
-- ❌ 不是图数据库，内置轻量级关联能力，满足中小规模需求
-
----
-
-## 📚 文档索引
-- [架构说明](./docs/CONTENT_SYSTEM_STRATEGY.md)：核心设计思路和架构规划
-- [命令参考](./docs/COMMANDS.md)：所有脚本和CLI命令的详细说明
-- [新手引导](./docs/MVP_ONBOARDING.md)：从零开始使用的完整指南
-- [工厂流水线](./docs/FACTORY_PIPELINE.md)：投料工厂的详细工作流程
-- [Workspace Tracker对接协议](./docs/WORKSPACE_TRACKER_HANDOFF.md)：两个系统的对接规范
-- [优先级规划](./docs/PRIORITY_BACKLOG.md)：后续开发计划
-- [CLI工具使用说明](./README_CLI.md)：Node Weaver CLI详细文档
-- [MCP服务使用说明](./README_MCP.md)：MCP服务安装配置指南
-
----
-
-## 当前阶段
-✅ MVP已完成，具备完整的闭环能力，可以投入日常使用。
-目标是尽快跑顺工作流，把分散的内容逐步沉淀为标准化的文化资产。
-
----
-
-## License
-MIT
+- [Public Safe Scope](./docs/PUBLIC_SAFE_SCOPE.md)

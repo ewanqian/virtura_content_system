@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "kind": "public-safe-sample",
+    "source": "OBJECT_INVENTORY_SAMPLE.csv"
+  },
+  "works": [
+    {
+      "id": "drop-flow",
+      "type": "work",
+      "title_zh": "滴流",
+      "title_en": "Drop Flow",
+      "parent_work_id": "",
+      "ownership": "shared",
+      "status": "public-example"
+    },
+    {
+      "id": "timer",
+      "type": "work",
+      "title_zh": "控时者",
+      "title_en": "TIMER",
+      "parent_work_id": "",
+      "ownership": "shared",
+      "status": "public-example"
+    },
+    {
+      "id": "observation-and-symbiosis",
+      "type": "work",
+      "title_zh": "观察与共生",
+      "title_en": "Observation and Symbiosis",
+      "parent_work_id": "",
+      "ownership": "shared",
+      "status": "public-example"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "kashiwa-titan-shenzhen-2025",
+      "type": "node",
+      "title_zh": "深圳专场《机械光合：TITAN 的全息声林》",
+      "title_en": "Mechanical Photosynthesis: TITAN Shenzhen Special",
+      "parent_work_id": "parent:kashiwa-collaboration-line",
+      "ownership": "personal",
+      "status": "public-example"
+    },
+    {
+      "id": "hangzhou-opening-drop-flow-2025",
+      "type": "node",
+      "title_zh": "首届中国（杭州）艺术与科技国际双年展开幕式《滴流》",
+      "title_en": "Hangzhou Art Tech Biennale Opening Drop Flow",
+      "parent_work_id": "parent:drop-flow",
+      "ownership": "shared",
+      "status": "public-example"
+    },
+    {
+      "id": "roooooooom719-drop-flow-3-2025",
+      "type": "node",
+      "title_zh": "Rooooooom719 音画现场《滴流 3.0》",
+      "title_en": "Rooooooom719 Drop Flow 3.0",
+      "parent_work_id": "parent:drop-flow",
+      "ownership": "shared",
+      "status": "public-example"
+    },
+    {
+      "id": "observe-symbiosis-pingshan-2025",
+      "type": "node",
+      "title_zh": "深圳坪山《观察与共生》",
+      "title_en": "Observation and Symbiosis Pingshan",
+      "parent_work_id": "parent:observation-and-symbiosis",
+      "ownership": "shared",
+      "status": "public-example"
+    },
+    {
+      "id": "babel-bottle-hangzhou-center-2025",
+      "type": "node",
+      "title_zh": "杭州中心《巴别瓶》",
+      "title_en": "Babel Bottle Exhibition at Hangzhou Center",
+      "parent_work_id": "parent:new-media-artist-simulator",
+      "ownership": "personal",
+      "status": "public-example"
+    }
+  ]
+}

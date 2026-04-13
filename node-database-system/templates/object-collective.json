@@ -1,9 +1,0 @@
-{
-  "id": "virtura-collective",
-  "type": "collective",
-  "name": "VIRTURA Collective",
-  "sourceRefs": [
-    "VIRTURA-Collective/README.md",
-    "VIRTURA-Collective/about/README.md"
-  ]
-}

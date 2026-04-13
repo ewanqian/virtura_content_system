@@ -1,0 +1,9 @@
+id,type,title_zh,title_en,parent_work_id,ownership,status
+drop-flow,work,滴流,Drop Flow,,shared,public-example
+timer,work,控时者,TIMER,,shared,public-example
+observation-and-symbiosis,work,观察与共生,Observation and Symbiosis,,shared,public-example
+kashiwa-titan-shenzhen-2025,node,深圳专场《机械光合：TITAN 的全息声林》,Mechanical Photosynthesis: TITAN Shenzhen Special,parent:kashiwa-collaboration-line,personal,public-example
+hangzhou-opening-drop-flow-2025,node,首届中国（杭州）艺术与科技国际双年展开幕式《滴流》,Hangzhou Art Tech Biennale Opening Drop Flow,parent:drop-flow,shared,public-example
+roooooooom719-drop-flow-3-2025,node,Rooooooom719 音画现场《滴流 3.0》,Rooooooom719 Drop Flow 3.0,parent:drop-flow,shared,public-example
+observe-symbiosis-pingshan-2025,node,深圳坪山《观察与共生》,Observation and Symbiosis Pingshan,parent:observation-and-symbiosis,shared,public-example
+babel-bottle-hangzhou-center-2025,node,杭州中心《巴别瓶》,Babel Bottle Exhibition at Hangzhou Center,parent:new-media-artist-simulator,personal,public-example

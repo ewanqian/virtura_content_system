@@ -1,8 +1,0 @@
-{
-  "id": "ewan-drop-flow",
-  "type": "relation",
-  "from": "ewan-qian",
-  "to": "drop-flow",
-  "relationType": "creator",
-  "notes": "Primary artistic lead"
-}

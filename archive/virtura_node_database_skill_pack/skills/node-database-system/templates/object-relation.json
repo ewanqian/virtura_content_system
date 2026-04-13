@@ -1,7 +1,0 @@
-{
-  "id": "rel-001",
-  "type": "relation",
-  "from": "drop-flow",
-  "to": "hangzhou-opening-drop-flow",
-  "relationType": "presented_as"
-}

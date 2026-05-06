@@ -1,0 +1,8 @@
+2026-05-07T03:01:00+08:00
+Change ID: prepare-drop-flow-wave01-staging
+Task Ref: 1.1
+Real Status: Verified
+Files Changed: scripts/build_drop_flow_wave01_staging.py; data/intake/drop_flow_wave01_staging.json; docs/DROP_FLOW_WAVE01_STAGING_2026-05-07.md
+Evidence Generated: auto_test_openspec/run-0009__task-1.1__ref-DFW1/evidence.txt
+Blockers: The archive source path may not be mounted at the original `/Volumes/Archive/...` location in the current machine session.
+Next Recommended Action: Use the staging manifest to drive a later visual-quality pass and selective-copy shortlist for Drop Flow.

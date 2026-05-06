@@ -1,0 +1,12 @@
+[
+  {
+    "feature_ref": "F-001",
+    "title": "Drop Flow wave 01 staging manifest",
+    "description": "The approved Drop Flow bundle is now split into reproducible review buckets so later selective-copy work can distinguish现场原图、渲染候选图、视频抽帧和低置信散图。",
+    "status": "passed",
+    "evidence": [
+      "auto_test_openspec/run-0009__task-1.1__ref-DFW1/evidence.txt"
+    ],
+    "notes": "Verified by script execution and generated JSON/markdown outputs."
+  }
+]
